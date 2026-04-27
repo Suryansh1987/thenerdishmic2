@@ -9,11 +9,10 @@ import {
   useRef,
   useState,
 } from "react";
-import type { HTMLMotionProps } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface TextProps extends HTMLMotionProps<"span"> {
+interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
   reverse?: boolean;
   transition?: {
@@ -29,6 +28,8 @@ interface TextProps extends HTMLMotionProps<"span"> {
   wordLevelClassName?: string;
   elementLevelClassName?: string;
   autoStart?: boolean;
+  onStart?: () => void;
+  onComplete?: () => void;
 }
 
 export interface VerticalCutRevealRef {
@@ -53,9 +54,9 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
       wordLevelClassName,
       elementLevelClassName,
       autoStart = true,
+      onStart,
+      onComplete,
       onClick,
-      onAnimationStart,
-      onAnimationComplete,
       ...props
     },
     ref,
@@ -114,8 +115,8 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
 
     const startAnimation = useCallback(() => {
       setIsAnimating(true);
-      onAnimationStart?.(undefined as never);
-    }, [onAnimationStart]);
+      onStart?.();
+    }, [onStart]);
 
     useImperativeHandle(ref, () => ({
       startAnimation,
@@ -184,7 +185,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
                     onAnimationComplete={
                       wordIndex === allWords.length - 1 &&
                       charIndex === wordObj.characters.length - 1
-                        ? () => onAnimationComplete?.(undefined as never)
+                        ? onComplete
                         : undefined
                     }
                     className="inline-block"
