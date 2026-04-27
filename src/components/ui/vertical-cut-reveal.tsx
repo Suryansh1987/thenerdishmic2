@@ -114,7 +114,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
 
     const startAnimation = useCallback(() => {
       setIsAnimating(true);
-      onAnimationStart?.(undefined as never, undefined as never);
+      onAnimationStart?.(undefined as never);
     }, [onAnimationStart]);
 
     useImperativeHandle(ref, () => ({
@@ -184,7 +184,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
                     onAnimationComplete={
                       wordIndex === allWords.length - 1 &&
                       charIndex === wordObj.characters.length - 1
-                        ? () => onAnimationComplete?.(undefined as never, undefined as never)
+                        ? () => onAnimationComplete?.(undefined as never)
                         : undefined
                     }
                     className="inline-block"
