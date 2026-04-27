@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
@@ -86,41 +86,42 @@ export function AnimatedTestimonials({
     return null;
   }
 
+  const activeTestimonial = testimonials[activeIndex];
+
   return (
     <section
       ref={sectionRef}
       id="testimonials"
-      className={`py-24 overflow-hidden bg-muted/30 ${className || ""}`}
+      className={`overflow-hidden bg-muted/30 py-16 sm:py-20 md:py-24 ${className || ""}`}
     >
       <div className="px-4 md:px-6">
         <motion.div
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="grid grid-cols-1 gap-16 w-full md:grid-cols-2 lg:gap-24"
+          className="grid w-full grid-cols-1 gap-10 md:grid-cols-2 md:gap-14 lg:gap-20"
         >
-          {/* Left side: Heading and navigation */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col justify-center"
           >
-            <div className="space-y-6">
+            <div className="space-y-5 sm:space-y-6">
               {badgeText && (
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary sm:text-sm">
                   <Star className="mr-1 h-3.5 w-3.5 fill-primary" />
                   <span>{badgeText}</span>
                 </div>
               )}
 
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
                 {title}
               </h2>
 
-              <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
+              <p className="max-w-[640px] text-sm text-muted-foreground sm:text-base md:text-lg md:leading-relaxed">
                 {subtitle}
               </p>
 
-              <div className="flex items-center gap-3 pt-4">
+              <div className="flex flex-wrap items-center gap-2 pt-2 sm:gap-3 sm:pt-4">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
@@ -137,88 +138,81 @@ export function AnimatedTestimonials({
             </div>
           </motion.div>
 
-          {/* Right side: Testimonial cards */}
-          <motion.div
-            variants={itemVariants}
-            className="relative h-full mr-10 min-h-[300px] md:min-h-[400px]"
-          >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                className="absolute inset-0"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{
-                  opacity: activeIndex === index ? 1 : 0,
-                  x: activeIndex === index ? 0 : 100,
-                  scale: activeIndex === index ? 1 : 0.9,
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                style={{ zIndex: activeIndex === index ? 10 : 0 }}
-              >
-                <div className="bg-card border shadow-lg rounded-xl p-8 h-full flex flex-col">
-                  <div className="mb-6 flex gap-2">
-                    {Array(testimonial.rating)
-                      .fill(0)
-                      .map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-5 w-5 fill-yellow-500 text-yellow-500"
-                        />
-                      ))}
-                  </div>
+          <motion.div variants={itemVariants} className="relative h-full">
+            <motion.div
+              key={activeTestimonial.id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="flex h-full min-h-[260px] flex-col rounded-xl border bg-card p-5 shadow-lg sm:p-6 md:min-h-[360px] md:p-8">
+                <div className="mb-5 flex gap-1.5 sm:gap-2">
+                  {Array(activeTestimonial.rating)
+                    .fill(0)
+                    .map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-4 w-4 fill-yellow-500 text-yellow-500 sm:h-5 sm:w-5"
+                      />
+                    ))}
+                </div>
 
-                  <div className="relative mb-6 flex-1">
-                    <Quote className="absolute -top-2 -left-2 h-8 w-8 text-primary/20 rotate-180" />
-                    <p className="relative z-10 text-lg font-medium leading-relaxed">
-                      &ldquo;{testimonial.content}&rdquo;
+                <div className="relative mb-5 flex-1 sm:mb-6">
+                  <Quote className="absolute -left-1 -top-1 h-7 w-7 rotate-180 text-primary/20 sm:-left-2 sm:-top-2 sm:h-8 sm:w-8" />
+                  <p className="relative z-10 pl-2 text-sm font-medium leading-relaxed sm:text-base md:text-lg">
+                    &ldquo;{activeTestimonial.content}&rdquo;
+                  </p>
+                </div>
+
+                <Separator className="my-4" />
+
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <Avatar className="h-10 w-10 border sm:h-12 sm:w-12">
+                    {activeTestimonial.avatar ? (
+                      <AvatarImage
+                        src={activeTestimonial.avatar}
+                        alt={activeTestimonial.name}
+                      />
+                    ) : null}
+                    <AvatarFallback>
+                      {activeTestimonial.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="text-sm font-semibold sm:text-base">
+                      {activeTestimonial.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground sm:text-sm">
+                      {[activeTestimonial.role, activeTestimonial.company]
+                        .filter(Boolean)
+                        .join(", ")}
                     </p>
                   </div>
-
-                  <Separator className="my-4" />
-
-                  <div className="flex items-center gap-4">
-                    <Avatar className="h-12 w-12 border">
-                      <AvatarImage
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                      />
-                      <AvatarFallback>
-                        {testimonial.name.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h3 className="font-semibold">{testimonial.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}, {testimonial.company}
-                      </p>
-                    </div>
-                  </div>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
 
-            {/* Decorative elements */}
-            <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-primary/5"></div>
-            <div className="absolute -top-6 -right-6 h-24 w-24 rounded-xl bg-primary/5"></div>
+            <div className="absolute -bottom-5 -left-5 hidden h-20 w-20 rounded-xl bg-primary/5 md:block" />
+            <div className="absolute -right-5 -top-5 hidden h-20 w-20 rounded-xl bg-primary/5 md:block" />
           </motion.div>
         </motion.div>
 
-        {/* Logo cloud */}
         {trustedCompanies.length > 0 && (
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate={controls}
-            className="mt-24 text-center"
+            className="mt-14 text-center md:mt-20"
           >
-            <h3 className="text-sm font-medium text-muted-foreground mb-8">
+            <h3 className="mb-6 text-xs font-medium text-muted-foreground sm:mb-8 sm:text-sm">
               {trustedCompaniesTitle}
             </h3>
-            <div className="flex flex-wrap justify-center gap-x-12 gap-y-8">
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 sm:gap-x-10 sm:gap-y-6 md:gap-x-12 md:gap-y-8">
               {trustedCompanies.map((company) => (
                 <div
                   key={company}
-                  className="text-2xl font-semibold text-muted-foreground/50"
+                  className="text-base font-semibold text-muted-foreground/60 sm:text-xl md:text-2xl"
                 >
                   {company}
                 </div>
@@ -230,3 +224,4 @@ export function AnimatedTestimonials({
     </section>
   );
 }
+

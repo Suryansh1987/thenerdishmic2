@@ -2,9 +2,11 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BrandScroll from "@/components/BrandScroll";
 import Services from "@/components/Services";
+import PricingSection5 from "@/components/ui/pricing";
 import Works from "@/components/Works";
 import Reels from "@/components/Reels";
 import Testimonials from "@/components/Testimonials";
+import Faq from "@/components/Faq";
 import Footer4Col from "@/components/ui/footer-column";
 
 export default function Home() {
@@ -18,7 +20,9 @@ export default function Home() {
         <Services />
         <Works />
         <Reels />
+        <PricingSection5 />
         <Testimonials />
+        <Faq />
         <Footer4Col />
       </div>
     </div>

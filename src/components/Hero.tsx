@@ -1,18 +1,28 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const STATS = [
-  "Trusted by 120+ brands",
-  "Websites in 14 days",
-  "AI automations live",
-  "3.4× avg ROAS lift",
-  "Always-on retainer",
-  "Top 1% creative ops",
+  "2k+ videos done",
+  "50 million views generated",
+  "$100k+ in organic revenue",
+  "30-35 video edits/month",
+  "15-20 carousels/month",
+  "Film just 3-5 hours/month",
 ];
 
 const AVATAR_GRADIENTS = [
-  "from-orange-400 to-rose-500",
-  "from-amber-400 to-orange-600",
-  "from-pink-400 to-orange-500",
+  {
+    src: "/Gemini_Generated_Image_3lyc4s3lyc4s3lyc.png",
+    alt: "Ryan Diaz",
+  },
+  {
+    src: "/KC.png",
+    alt: "Mystic Twist",
+  },
+  {
+    src: "/sam%20pp.jpg.jpeg",
+    alt: "Sam",
+  },
 ];
 
 function CheckMark() {
@@ -89,11 +99,15 @@ function TestimonialCard({
   handle,
   text,
   rotate,
+  avatarSrc,
+  avatarAlt,
   className = "",
 }: {
   handle: string;
   text: string;
   rotate: string;
+  avatarSrc: string;
+  avatarAlt: string;
   className?: string;
 }) {
   return (
@@ -101,7 +115,13 @@ function TestimonialCard({
       className={`w-[280px] rounded-2xl bg-white p-4 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.18)] ring-1 ring-black/5 ${rotate} ${className}`}
     >
       <div className="flex items-start gap-3">
-        <div className="h-10 w-10 shrink-0 rounded-full bg-gradient-to-br from-orange-300 to-rose-400 ring-2 ring-white" />
+        <Image
+          src={avatarSrc}
+          alt={avatarAlt}
+          width={40}
+          height={40}
+          className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-white"
+        />
         <div className="flex-1">
           <p className="text-sm font-semibold text-neutral-900">{handle}</p>
           <p className="mt-0.5 text-[15px] leading-snug text-neutral-700">
@@ -129,35 +149,43 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-10 lg:px-10 lg:pt-16">
         <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_1fr]">
-          {/* Left content */}
           <div className="flex flex-col items-start">
-            {/* Trust pill */}
             <div className="inline-flex items-center gap-3 rounded-full bg-white py-1.5 pl-1.5 pr-4 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)] ring-1 ring-black/5">
               <div className="flex -space-x-2">
-                {AVATAR_GRADIENTS.map((g, i) => (
-                  <span
-                    key={i}
-                    className={`h-7 w-7 rounded-full bg-gradient-to-br ${g} ring-2 ring-white`}
+                {AVATAR_GRADIENTS.map((avatar) => (
+                  <Image
+                    key={avatar.src}
+                    src={avatar.src}
+                    alt={avatar.alt}
+                    width={28}
+                    height={28}
+                    className="h-7 w-7 rounded-full object-cover ring-2 ring-white"
                   />
                 ))}
               </div>
               <span className="text-sm font-medium text-neutral-800">
-                Trusted by 120+ founders & brands
+                The Nerdish Mic for entrepreneurs, coaches, and B2B founders
               </span>
             </div>
 
-            {/* Heading */}
             <h1 className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-5xl font-bold leading-[1.05] tracking-tight text-neutral-950 sm:text-6xl lg:text-[68px]">
-              <span>Marketing</span>
+              <span>From Hidden Expert</span>
               <Sparkle />
               <span className="block w-full">
-                that actually <span className="text-brand">sells.</span>
+                to <span className="text-brand">Thought Leader.</span>
               </span>
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-neutral-600">
-              One studio for your website, content, automations and growth.
-              We&rsquo;re your full marketing team — without the overhead.
+              We transform entrepreneurs and coaches into recognized authorities
+              with strategy, scripting, world-class editing, and organic growth
+              systems.
+            </p>
+
+            <p className="mt-3 max-w-lg text-base leading-relaxed text-neutral-600">
+              You record for 3-5 hours each month. We run the full content
+              engine and turn your expertise into visibility, trust, and booked
+              clients.
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-3">
@@ -184,29 +212,31 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right floating testimonials */}
           <div className="relative h-[420px] lg:h-[500px]">
             <TestimonialCard
-              handle="@tomas"
-              text="Site live in 11 days. Conversions up 2.6×."
+              handle="@mystic.twist"
+              text="I closed my first high-ticket coaching client after my Instagram upgrade."
               rotate="rotate-[-4deg]"
+              avatarSrc="/KC.png"
+              avatarAlt="Mystic Twist"
               className="absolute right-6 top-4 lg:right-10 lg:top-10"
             />
             <TestimonialCard
-              handle="@mark_locus"
-              text="Their automation runs my whole funnel now."
+              handle="@ryan.diaz"
+              text="My calendar is consistently booked now. The results difference is huge."
               rotate="rotate-[3deg]"
+              avatarSrc="/Gemini_Generated_Image_3lyc4s3lyc4s3lyc.png"
+              avatarAlt="Ryan Diaz"
               className="absolute right-0 top-44 lg:right-2 lg:top-56"
             />
           </div>
         </div>
 
-        {/* Stats marquee */}
         <div className="mt-12 flex flex-wrap items-center gap-3 lg:mt-16">
           <span className="px-2 text-sm font-medium text-neutral-700">
-            8 years building brands
+            Your in-house content team without the overhead
           </span>
-          {STATS.slice(1).map((stat) => (
+          {STATS.map((stat) => (
             <span
               key={stat}
               className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-800 ring-1 ring-black/5"

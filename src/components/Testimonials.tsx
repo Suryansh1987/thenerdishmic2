@@ -1,67 +1,89 @@
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+﻿import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 const testimonials = [
   {
     id: 1,
-    name: "Alex Carter",
-    role: "Founder & CEO",
-    company: "Northwave Apparel",
+    name: "Pallavi Marshall",
+    role: "Founder",
+    company: "Serenitree Yoga",
     content:
-      "thenerdishmic rebuilt our Shopify, plugged in the email automations and ran our Q4 ads. We did 3.2× more revenue than last year on the same ad spend. They feel like a co-founder, not an agency.",
+      "This is perfect! Thanks for taking all my feedback. The edits are spot on. I really like how this reel has come together - it looks fantastic!",
     rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80",
+    avatar: "",
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    role: "Head of Growth",
-    company: "LumenLabs",
+    name: "Pallavi Marshall",
+    role: "Founder",
+    company: "Serenitree Yoga",
     content:
-      "We had a Notion full of ideas and zero execution. Six weeks later we had a new website, a working CRM, branded content going out weekly and a paid funnel that actually converts. Easy decision to renew.",
+      "Wow these are some great ideas. Can you help me set up my booking page too? It's lovely... thank you for all your efforts. I really like how this reel has come together. It looks fantastic! Thanks so much for doing this!",
     rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80",
+    avatar: "",
   },
   {
     id: 3,
-    name: "Marcus Lee",
-    role: "Co-founder",
-    company: "Beacon Studio",
+    name: "Ben Ewers",
+    role: "Founder",
+    company: "Genxsis",
     content:
-      "The AI workflow they built for our support and onboarding saves us 40+ hours a week. They don't sell hours — they sell outcomes. Best agency hire we've made.",
+      "I really appreciate your team and the work that you guys produce... Your quality is key. Your videos are excellent and I can definitely see the time and quality you have put into them.",
     rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80",
+    avatar: "",
   },
   {
     id: 4,
-    name: "Sofia Reyes",
-    role: "Founder",
-    company: "Build With Sofia",
+    name: "Sam Franklin",
+    role: "Intuitive Coach · Co-Owner",
+    company: "Apricity Counseling & Wellness",
     content:
-      "I came in needing a website. I left with a brand, a launch funnel, an automated email engine and 2× the leads in 60 days. The team genuinely cares about your numbers.",
+      "Working with Prithvi and his team has totally changed my social media game. Before, I was stressed, struggling with scripts and editing instead of focusing on helping people. In just three months, they captured my authentic voice through a co-creative process. My content is now more professional and engaging, and I have seen a significant increase in followers and inquiries from potential clients.",
     rating: 5,
-    avatar:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80",
+    avatar: "",
+  },
+  {
+    id: 5,
+    name: "Client Testimonial",
+    role: "Personal Brand Client",
+    company: "Direct Conversation",
+    content:
+      "Reaching out to The Nerdish Mic six months ago was one of the best decisions I made for my business. The shift in my brand visibility and client engagement has been drastic. My calendar is now consistently booked, and I'm attracting more clients than ever before.",
+    rating: 5,
+    avatar: "",
+  },
+  {
+    id: 6,
+    name: "Dr. Kara Consigli",
+    role: "Founder",
+    company: "Mystic Twist",
+    content:
+      "I just closed my first high-ticket coaching client and she said seeing my Instagram transform over time was a big factor in building trust. Best decision I have made for my business. Thank you, Prithvi! Couldn't have done it without you and the team!",
+    rating: 5,
+    avatar: "",
   },
 ];
 
 export default function Testimonials() {
   return (
     <AnimatedTestimonials
-      title="Founders scale faster with thenerdishmic"
-      subtitle="From bootstrapped startups to 8-figure DTC brands — see why operators trust us to run their growth, content and automation under one roof."
-      badgeText="Loved by 120+ founders"
+      title="In Our Clients' Own Words"
+      subtitle="Real appreciation from real conversations, direct feedback, and measurable client outcomes."
+      badgeText="Real Appreciation From Real Conversations"
       testimonials={testimonials}
       trustedCompanies={[
-        "Northwave",
-        "LumenLabs",
-        "Beacon",
-        "Stride",
-        "Helix",
+        "courseera",
+        "Meta",
+        "NBA",
+        "NFL",
+        "UN",
+        "Eluna Network",
+        "Good Morning Gorgeous",
+        "Serenitree Yoga",
+        "Genxsis",
+        "Apricity",
       ]}
-      trustedCompaniesTitle="Helping brands grow across"
+      trustedCompaniesTitle="Trusted by leading brands, networks, and founder-led businesses"
     />
   );
 }
+

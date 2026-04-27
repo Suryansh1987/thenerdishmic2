@@ -4,38 +4,26 @@ import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX, Play } from "lucide-react";
 
 const REEL_IDS = [
-  "4882",
-  "50122",
-  "39767",
-  "4549",
-  "21704",
-  "31377",
-  "40972",
-  "4761",
-  "4524",
-  "4886",
-  "33484",
-  "4791",
+  "/Video-42.mp4",
+  "/Video-383.mp4",
+  "/Video-459.mp4",
+  "/Video-789.mp4",
+  "/Video-889.mp4",
+  "/Video-897.mp4",
 ] as const;
 
 const REEL_META = [
-  { handle: "@nina.cuts", views: "2.4M", title: "Hook in 0.8s" },
-  { handle: "@beacon", views: "1.1M", title: "Studio launch" },
-  { handle: "@mark_locus", views: "890K", title: "Day in life" },
-  { handle: "@sofia.builds", views: "3.2M", title: "Founder POV" },
-  { handle: "@lumenlabs", views: "560K", title: "Brand spot" },
-  { handle: "@alex.cart", views: "4.7M", title: "Big reveal" },
-  { handle: "@priya.s", views: "1.8M", title: "Tutorial cut" },
-  { handle: "@coldfusion", views: "2.9M", title: "Mini-doc" },
-  { handle: "@buildwith", views: "720K", title: "Process reel" },
-  { handle: "@thecreator", views: "1.3M", title: "Behind scenes" },
-  { handle: "@studio.lab", views: "2.1M", title: "Punchy edit" },
-  { handle: "@tomas.v", views: "950K", title: "Quick cut" },
+  { handle: "@thenerdishmic", views: "Client Reel", title: "Authority edit #1" },
+  { handle: "@thenerdishmic", views: "Client Reel", title: "Authority edit #2" },
+  { handle: "@thenerdishmic", views: "Client Reel", title: "Authority edit #3" },
+  { handle: "@thenerdishmic", views: "Client Reel", title: "Authority edit #4" },
+  { handle: "@thenerdishmic", views: "Client Reel", title: "Authority edit #5" },
+  { handle: "@thenerdishmic", views: "Client Reel", title: "Authority edit #6" },
 ];
 
-const reels = REEL_IDS.map((id, i) => ({
+const reels = REEL_IDS.map((src, i) => ({
   id: i,
-  src: `https://assets.mixkit.co/videos/${id}/${id}-720.mp4`,
+  src,
   ...REEL_META[i],
 }));
 
