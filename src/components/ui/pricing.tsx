@@ -21,8 +21,6 @@ const plans = [
     name: "Authority Launch",
     description:
       "For founders and coaches who want consistent, high-quality short-form content without managing an internal team.",
-    heroImage:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80",
     buttonText: "Book Discovery Call",
     buttonVariant: "outline" as const,
     features: [
@@ -45,8 +43,6 @@ const plans = [
     name: "Growth Engine",
     description:
       "For businesses that need aggressive organic growth with a complete strategy, production, and optimization loop.",
-    heroImage:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80",
     buttonText: "Scale My Content",
     buttonVariant: "default" as const,
     popular: true,
@@ -70,8 +66,6 @@ const plans = [
     name: "Market Leader",
     description:
       "For high-ticket operators ready to dominate their category with authority-led content systems and strategic distribution.",
-    heroImage:
-      "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=1400&q=80",
     buttonText: "Build My Authority",
     buttonVariant: "outline" as const,
     features: [
@@ -108,14 +102,14 @@ const ScopeSwitch = ({
 
   return (
     <div className={cn("flex justify-center", className)}>
-      <div className="relative z-10 mx-auto flex w-fit rounded-xl border border-gray-200 bg-neutral-50 p-1">
+      <div className="relative z-10 mx-auto flex w-fit rounded-xl border border-foreground/10 bg-surface-2 p-1">
         <button
           onClick={() => handleSwitch("0")}
           className={cn(
             "relative z-10 h-12 w-fit cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition-colors sm:px-6 sm:text-base",
             selected === "0"
               ? "text-white"
-              : "text-muted-foreground hover:text-black",
+              : "text-muted-foreground hover:text-foreground",
           )}
         >
           {selected === "0" && (
@@ -134,7 +128,7 @@ const ScopeSwitch = ({
             "relative z-10 h-12 w-fit cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition-colors sm:px-6 sm:text-base",
             selected === "1"
               ? "text-white"
-              : "text-muted-foreground hover:text-black",
+              : "text-muted-foreground hover:text-foreground",
           )}
         >
           {selected === "1" && (
@@ -182,11 +176,11 @@ export default function PricingSection5() {
   return (
     <section
       id="plans"
-      className="relative mx-auto min-h-screen max-w-7xl px-4 pt-20"
+      className="relative mx-auto max-w-7xl px-4 pt-12 sm:pt-16 lg:pt-20"
       ref={pricingRef}
     >
       <article className="mb-8 max-w-3xl space-y-4 text-left">
-        <h2 className="mb-4 text-4xl font-medium capitalize text-gray-900 md:text-6xl">
+        <h2 className="mb-4 text-3xl font-medium capitalize text-foreground sm:text-4xl md:text-6xl">
           <VerticalCutReveal
             splitBy="words"
             staggerDuration={0.12}
@@ -209,7 +203,7 @@ export default function PricingSection5() {
           animationNum={0}
           timelineRef={pricingRef}
           customVariants={revealVariants}
-          className="w-full text-sm text-gray-600 md:w-[85%] md:text-base"
+          className="w-full text-sm text-foreground/70 md:w-[85%] md:text-base"
         >
           No generic package fluff. These 3 plans are structured around how The
           Nerdish Mic actually helps clients become trusted thought leaders and
@@ -237,40 +231,36 @@ export default function PricingSection5() {
           >
             <Card
               className={cn(
-                "relative overflow-hidden border border-neutral-200",
+                "relative overflow-hidden border border-foreground/10",
                 "shadow-[0_12px_0_0_rgba(251,146,60,0.9),0_30px_50px_-26px_rgba(194,65,12,0.45)]",
-                plan.popular ? "bg-orange-50 ring-2 ring-orange-500" : "bg-white",
+                plan.popular
+                  ? "bg-accent ring-2 ring-orange-500"
+                  : "bg-card",
               )}
             >
-              <div
-                className="h-36 w-full bg-cover bg-center"
-                style={{ backgroundImage: `url('${plan.heroImage}')` }}
-                aria-hidden="true"
-              />
-
               <CardHeader className="text-left">
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-3xl font-semibold text-gray-900 md:text-2xl xl:text-3xl">
+                  <h3 className="text-2xl font-semibold text-card-foreground sm:text-3xl md:text-2xl xl:text-3xl">
                     {plan.name}
                   </h3>
                   {plan.popular && (
-                    <span className="rounded-full bg-orange-500 px-3 py-1 text-sm font-medium text-white">
+                    <span className="rounded-full bg-orange-500 px-3 py-1 text-xs font-medium text-white sm:text-sm">
                       Most Popular
                     </span>
                   )}
                 </div>
-                <p className="mb-3 text-sm text-gray-600 md:text-xs xl:text-sm">
+                <p className="mb-3 text-sm text-card-foreground/70 md:text-xs xl:text-sm">
                   {plan.description}
                 </p>
-                <div className="rounded-xl border border-orange-200 bg-orange-50 px-4 py-3">
-                  <p className="text-xs uppercase tracking-wide text-orange-700">
+                <div className="rounded-xl border border-orange-200 bg-orange-50 px-4 py-3 dark:border-orange-500/20 dark:bg-orange-500/10">
+                  <p className="text-[11px] uppercase tracking-wide text-orange-700 sm:text-xs dark:text-orange-300">
                     {plan.volumeLabel}
                   </p>
-                  <p className="mt-1 flex items-center text-3xl font-semibold text-gray-900">
+                  <p className="mt-1 flex items-center text-2xl font-semibold text-card-foreground sm:text-3xl">
                     <NumberFlow value={isScaleMode ? plan.volumeValue + 8 : plan.volumeValue} />
-                    <span className="ml-1 text-base font-medium text-gray-600">+</span>
+                    <span className="ml-1 text-base font-medium text-card-foreground/70">+</span>
                   </p>
-                  <p className="mt-1 text-sm text-gray-600">
+                  <p className="mt-1 text-sm text-card-foreground/70">
                     Scope matched to your current growth stage.
                   </p>
                 </div>
@@ -279,29 +269,29 @@ export default function PricingSection5() {
               <CardContent className="pt-0">
                 <button
                   className={cn(
-                    "mb-4 w-full rounded-xl p-4 text-lg",
+                    "mb-4 w-full rounded-xl p-3 text-base sm:p-4 sm:text-lg",
                     plan.popular
                       ? "border border-orange-400 bg-gradient-to-t from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/50"
-                      : "border border-neutral-700 bg-gradient-to-t from-neutral-900 to-neutral-600 text-white shadow-lg shadow-neutral-900/50",
+                      : "border border-foreground/20 bg-gradient-to-t from-neutral-900 to-neutral-600 text-white shadow-lg shadow-neutral-900/50 dark:from-neutral-700 dark:to-neutral-500",
                   )}
                 >
                   {plan.buttonText}
                 </button>
-                <button className="mb-6 w-full rounded-xl border border-gray-200 bg-white p-4 text-lg text-black shadow-lg shadow-gray-200">
+                <button className="mb-6 w-full rounded-xl border border-foreground/10 bg-surface-2 p-3 text-base text-foreground shadow-sm sm:p-4 sm:text-lg">
                   Request Custom Proposal
                 </button>
 
-                <div className="mb-6 space-y-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
-                  <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-900">
+                <div className="mb-6 space-y-3 rounded-xl border border-foreground/10 bg-surface-2 p-4">
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-card-foreground">
                     Core Capabilities
                   </h4>
                   <ul className="space-y-2">
                     {plan.features.map((feature) => (
                       <li key={feature.text} className="flex items-center gap-3">
-                        <span className="grid h-8 w-8 place-content-center rounded-full border border-orange-200 bg-white text-orange-600">
+                        <span className="grid h-8 w-8 place-content-center rounded-full border border-orange-200 bg-card text-orange-600 dark:border-orange-500/30">
                           {feature.icon}
                         </span>
-                        <span className="text-sm font-medium text-gray-700">
+                        <span className="text-sm font-medium text-card-foreground/85">
                           {feature.text}
                         </span>
                       </li>
@@ -309,20 +299,20 @@ export default function PricingSection5() {
                   </ul>
                 </div>
 
-                <div className="space-y-3 border-t border-neutral-200 pt-4">
-                  <h2 className="mb-3 text-lg font-semibold uppercase text-gray-900">
+                <div className="space-y-3 border-t border-foreground/10 pt-4">
+                  <h2 className="mb-3 text-lg font-semibold uppercase text-card-foreground">
                     What You Get
                   </h2>
-                  <h4 className="mb-3 text-base font-medium text-gray-900">
+                  <h4 className="mb-3 text-base font-medium text-card-foreground">
                     {plan.includes[0]}
                   </h4>
                   <ul className="space-y-2 font-semibold">
                     {plan.includes.slice(1).map((feature) => (
                       <li key={feature} className="flex items-center">
-                        <span className="mr-3 mt-0.5 grid h-6 w-6 place-content-center rounded-full border border-orange-500 bg-white">
+                        <span className="mr-3 mt-0.5 grid h-6 w-6 place-content-center rounded-full border border-orange-500 bg-card">
                           <CheckCheck className="h-4 w-4 text-orange-500" />
                         </span>
-                        <span className="text-sm text-gray-600">{feature}</span>
+                        <span className="text-sm text-card-foreground/70">{feature}</span>
                       </li>
                     ))}
                   </ul>

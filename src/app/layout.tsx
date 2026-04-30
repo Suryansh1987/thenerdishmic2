@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { CustomCursor } from "@/components/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,10 +15,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "thenerdishmic — Growth, automation & websites in one studio",
+  title: "thenerdishmic: Growth, automation & websites in one studio",
   description:
-    "Full-stack marketing agency. We build the website, run the automation, edit the content and scale the brand — so founders can ship and sell.",
+    "Full-stack marketing agency. We build the website, run the automation, edit the content and scale the brand, so founders can ship and sell.",
 };
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b10" },
+  ],
+};
+
+const themeInitScript = `
+(function () {
+  try {
+    var stored = localStorage.getItem('tnm-theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var resolved = stored ? stored : (prefersDark ? 'dark' : 'light');
+    if (resolved === 'dark') document.documentElement.classList.add('dark');
+  } catch (e) {}
+})();
+`;
 
 export default function RootLayout({
   children,
@@ -26,9 +48,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <ThemeProvider>
+          <CustomCursor />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

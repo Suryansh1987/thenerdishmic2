@@ -48,10 +48,20 @@ function FrameComponent({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
     if (isHovered) {
-      videoRef.current?.play().catch(() => {});
+      v.muted = false;
+      v.volume = 1;
+      v.currentTime = 0;
+      v.play().catch(() => {
+        v.muted = true;
+        v.play().catch(() => {});
+      });
     } else {
-      videoRef.current?.pause();
+      v.pause();
+      v.muted = true;
+      v.currentTime = 0;
     }
   }, [isHovered]);
 
@@ -186,27 +196,36 @@ export function DynamicFrameLayout({
     null,
   );
 
-  const getRowSizes = () => {
-    if (hovered === null) return "4fr 4fr 4fr";
-    const { row } = hovered;
-    const nonHoveredSize = (12 - hoverSize) / 2;
-    return [0, 1, 2]
-      .map((r) => (r === row ? `${hoverSize}fr` : `${nonHoveredSize}fr`))
-      .join(" ");
+  const cellSize = 4;
+  const cols =
+    Math.floor(
+      Math.max(...frames.map((f) => f.defaultPos.x / cellSize)),
+    ) + 1;
+  const rows =
+    Math.floor(
+      Math.max(...frames.map((f) => f.defaultPos.y / cellSize)),
+    ) + 1;
+
+  const buildSizes = (count: number, hoveredIndex: number | null) => {
+    const total = count * cellSize;
+    if (hoveredIndex === null)
+      return Array.from({ length: count }, () => `${cellSize}fr`).join(" ");
+    const nonHoveredSize = (total - hoverSize) / Math.max(count - 1, 1);
+    return Array.from({ length: count }, (_, i) =>
+      i === hoveredIndex ? `${hoverSize}fr` : `${nonHoveredSize}fr`,
+    ).join(" ");
   };
 
-  const getColSizes = () => {
-    if (hovered === null) return "4fr 4fr 4fr";
-    const { col } = hovered;
-    const nonHoveredSize = (12 - hoverSize) / 2;
-    return [0, 1, 2]
-      .map((c) => (c === col ? `${hoverSize}fr` : `${nonHoveredSize}fr`))
-      .join(" ");
-  };
+  const getRowSizes = () => buildSizes(rows, hovered?.row ?? null);
+  const getColSizes = () => buildSizes(cols, hovered?.col ?? null);
 
   const getTransformOrigin = (x: number, y: number) => {
-    const vertical = y === 0 ? "top" : y === 4 ? "center" : "bottom";
-    const horizontal = x === 0 ? "left" : x === 4 ? "center" : "right";
+    const colIdx = Math.floor(x / cellSize);
+    const rowIdx = Math.floor(y / cellSize);
+    const vertical =
+      rowIdx === 0 ? "top" : rowIdx === rows - 1 ? "bottom" : "center";
+    const horizontal =
+      colIdx === 0 ? "left" : colIdx === cols - 1 ? "right" : "center";
     return `${vertical} ${horizontal}`;
   };
 

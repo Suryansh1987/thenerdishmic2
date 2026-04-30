@@ -7,7 +7,7 @@ const testimonials = [
     role: "Founder",
     company: "Serenitree Yoga",
     content:
-      "This is perfect! Thanks for taking all my feedback. The edits are spot on. I really like how this reel has come together - it looks fantastic!",
+      "This is perfect! Thanks for taking all my feedback. The edits are spot on. I really like how this reel has come together. It looks fantastic!",
     rating: 5,
     avatar: "",
   },
@@ -43,7 +43,7 @@ const testimonials = [
   },
   {
     id: 5,
-    name: "Client Testimonial",
+    name: "Rayan Ezzeddine",
     role: "Personal Brand Client",
     company: "Direct Conversation",
     content:

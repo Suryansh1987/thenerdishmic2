@@ -74,7 +74,7 @@ const data = {
   company: {
     name: "thenerdishmic",
     description:
-      "Full-stack marketing agency. We build the website, run the automations, ship the content and scale the brand — so founders can focus on shipping and selling.",
+      "Full-stack marketing agency. We build the website, run the automations, ship the content and scale the brand, so founders can focus on shipping and selling.",
   },
 };
 

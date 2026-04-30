@@ -48,7 +48,7 @@ function ReelCard({ reel, isActive, onEnter, onLeave }: ReelCardProps) {
     <div
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="group relative h-[440px] w-[248px] shrink-0 overflow-hidden rounded-3xl bg-neutral-900 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.4)] ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.03]"
+      className="group relative h-[340px] w-[192px] shrink-0 overflow-hidden rounded-2xl bg-neutral-900 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.4)] ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.03] sm:h-[440px] sm:w-[248px] sm:rounded-3xl"
     >
       <video
         ref={videoRef}
@@ -115,37 +115,37 @@ export default function Reels() {
   return (
     <section
       id="reels"
-      className="relative w-full overflow-hidden bg-neutral-950 py-24 text-white"
+      className="relative w-full overflow-hidden bg-neutral-950 py-16 text-white sm:py-24"
     >
       {/* Glow */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/4 top-0 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute left-1/4 top-0 h-56 w-56 rounded-full bg-primary/30 blur-3xl sm:h-72 sm:w-72" />
+        <div className="absolute bottom-0 right-1/4 h-56 w-56 rounded-full bg-primary/20 blur-3xl sm:h-72 sm:w-72" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <span className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-sm font-medium text-primary">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           Short-form
         </span>
-        <div className="mt-4 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <h2 className="max-w-2xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+        <div className="mt-3 flex flex-col items-start justify-between gap-4 sm:mt-4 sm:gap-6 md:flex-row md:items-end">
+          <h2 className="max-w-2xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Reels that <span className="text-primary">don&rsquo;t scroll past</span>.
           </h2>
-          <p className="max-w-md text-lg text-white/60">
+          <p className="max-w-md text-base text-white/60 sm:text-lg">
             Hover any reel to pause the row and unmute. We ship 30+ short-form
-            cuts per brand each month — across TikTok, Reels and Shorts.
+            cuts per brand each month, across TikTok, Reels and Shorts.
           </p>
         </div>
       </div>
 
-      <div className="relative mt-16">
+      <div className="relative mt-10 sm:mt-16">
         {/* Edge fades */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-neutral-950 to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-neutral-950 to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-neutral-950 to-transparent sm:w-32" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-neutral-950 to-transparent sm:w-32" />
 
         <div
-          className="flex w-max gap-6 px-6 will-change-transform [animation:reel-marquee_60s_linear_infinite]"
+          className="flex w-max gap-4 px-4 will-change-transform [animation:reel-marquee_60s_linear_infinite] sm:gap-6 sm:px-6"
           style={{ animationPlayState: paused ? "paused" : "running" }}
         >
           {[...reels, ...reels].map((reel, i) => (

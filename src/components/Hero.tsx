@@ -5,9 +5,6 @@ const STATS = [
   "2k+ videos done",
   "50 million views generated",
   "$100k+ in organic revenue",
-  "30-35 video edits/month",
-  "15-20 carousels/month",
-  "Film just 3-5 hours/month",
 ];
 
 const AVATAR_GRADIENTS = [
@@ -38,8 +35,8 @@ function CheckMark() {
 
 function Sparkle() {
   return (
-    <span className="inline-flex h-12 w-12 -rotate-6 items-center justify-center rounded-2xl bg-brand shadow-[0_10px_24px_-8px_rgba(255,90,31,0.6)] sm:h-14 sm:w-14">
-      <svg viewBox="0 0 24 24" className="h-7 w-7 text-white" fill="none">
+    <span className="inline-flex h-10 w-10 -rotate-6 items-center justify-center rounded-2xl bg-brand shadow-[0_10px_24px_-8px_rgba(255,90,31,0.6)] sm:h-14 sm:w-14">
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-white sm:h-7 sm:w-7" fill="none">
         <path
           d="M12 2.5l1.9 5.4 5.4 1.9-5.4 1.9L12 17l-1.9-5.3-5.4-1.9 5.4-1.9L12 2.5Z"
           fill="currentColor"
@@ -112,7 +109,7 @@ function TestimonialCard({
 }) {
   return (
     <div
-      className={`w-[280px] rounded-2xl bg-white p-4 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.18)] ring-1 ring-black/5 ${rotate} ${className}`}
+      className={`w-[240px] rounded-2xl bg-card p-4 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.18)] ring-1 ring-foreground/5 sm:w-[280px] ${rotate} ${className}`}
     >
       <div className="flex items-start gap-3">
         <Image
@@ -120,20 +117,20 @@ function TestimonialCard({
           alt={avatarAlt}
           width={40}
           height={40}
-          className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-white"
+          className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-card"
         />
         <div className="flex-1">
-          <p className="text-sm font-semibold text-neutral-900">{handle}</p>
-          <p className="mt-0.5 text-[15px] leading-snug text-neutral-700">
+          <p className="text-sm font-semibold text-card-foreground">{handle}</p>
+          <p className="mt-0.5 text-[15px] leading-snug text-card-foreground/80">
             {text}
           </p>
         </div>
       </div>
-      <div className="mt-3 flex items-center gap-4 text-neutral-400">
+      <div className="mt-3 flex items-center gap-4 text-card-foreground/40">
         <ThumbUp />
         <ThumbDown />
         <ReplyIcon />
-        <span className="ml-auto text-sm font-medium text-neutral-500">
+        <span className="ml-auto text-sm font-medium text-card-foreground/60">
           Reply
         </span>
       </div>
@@ -145,13 +142,13 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-60" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/40 via-white/0 to-white" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/40 via-background/0 to-background" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-10 lg:px-10 lg:pt-16">
-        <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_1fr]">
+      <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-6 sm:px-6 sm:pb-16 sm:pt-10 lg:px-10 lg:pt-16">
+        <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
           <div className="flex flex-col items-start">
-            <div className="inline-flex items-center gap-3 rounded-full bg-white py-1.5 pl-1.5 pr-4 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)] ring-1 ring-black/5">
-              <div className="flex -space-x-2">
+            <div className="inline-flex max-w-full items-center gap-2.5 rounded-full bg-card py-1.5 pl-1.5 pr-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)] ring-1 ring-foreground/5 sm:gap-3 sm:pr-4">
+              <div className="flex shrink-0 -space-x-2">
                 {AVATAR_GRADIENTS.map((avatar) => (
                   <Image
                     key={avatar.src}
@@ -159,16 +156,16 @@ export default function Hero() {
                     alt={avatar.alt}
                     width={28}
                     height={28}
-                    className="h-7 w-7 rounded-full object-cover ring-2 ring-white"
+                    className="h-6 w-6 rounded-full object-cover ring-2 ring-card sm:h-7 sm:w-7"
                   />
                 ))}
               </div>
-              <span className="text-sm font-medium text-neutral-800">
-                The Nerdish Mic for entrepreneurs, coaches, and B2B founders
+              <span className="truncate text-xs font-medium text-card-foreground/80 sm:text-sm">
+                For entrepreneurs, coaches & B2B founders
               </span>
             </div>
 
-            <h1 className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-5xl font-bold leading-[1.05] tracking-tight text-neutral-950 sm:text-6xl lg:text-[68px]">
+            <h1 className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[34px] font-bold leading-[1.05] tracking-tight text-foreground sm:mt-6 sm:gap-x-4 sm:text-5xl md:text-6xl lg:text-[68px]">
               <span>From Hidden Expert</span>
               <Sparkle />
               <span className="block w-full">
@@ -176,25 +173,25 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-neutral-600">
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-foreground/70 sm:mt-6 sm:text-lg">
               We transform entrepreneurs and coaches into recognized authorities
               with strategy, scripting, world-class editing, and organic growth
               systems.
             </p>
 
-            <p className="mt-3 max-w-lg text-base leading-relaxed text-neutral-600">
+            <p className="mt-3 max-w-lg text-sm leading-relaxed text-foreground/70 sm:text-base">
               You record for 3-5 hours each month. We run the full content
               engine and turn your expertise into visibility, trust, and booked
               clients.
             </p>
 
-            <div className="mt-8 flex flex-col items-start gap-3">
+            <div className="mt-7 flex flex-col items-start gap-3 sm:mt-8">
               <Link
                 href="#book"
-                className="group inline-flex items-center gap-3 rounded-full bg-neutral-900 py-2 pl-6 pr-2 text-base font-medium text-white transition-colors hover:bg-neutral-800"
+                className="group inline-flex items-center gap-3 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm font-medium text-background transition-colors hover:opacity-90 sm:pl-6 sm:text-base"
               >
                 Book a Call
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-neutral-900 transition-transform group-hover:translate-x-0.5">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-background text-foreground transition-transform group-hover:translate-x-0.5 sm:h-10 sm:w-10">
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
                     <path
                       d="M5 12h14M13 6l6 6-6 6"
@@ -206,20 +203,20 @@ export default function Hero() {
                   </svg>
                 </span>
               </Link>
-              <p className="text-sm font-medium text-neutral-700">
+              <p className="text-sm font-medium text-foreground/70">
                 No pitch deck. Just a call.
               </p>
             </div>
           </div>
 
-          <div className="relative h-[420px] lg:h-[500px]">
+          <div className="relative mt-2 h-[300px] sm:h-[380px] lg:mt-0 lg:h-[500px]">
             <TestimonialCard
               handle="@mystic.twist"
               text="I closed my first high-ticket coaching client after my Instagram upgrade."
               rotate="rotate-[-4deg]"
               avatarSrc="/KC.png"
               avatarAlt="Mystic Twist"
-              className="absolute right-6 top-4 lg:right-10 lg:top-10"
+              className="absolute left-2 top-2 sm:left-auto sm:right-6 sm:top-4 lg:right-10 lg:top-10"
             />
             <TestimonialCard
               handle="@ryan.diaz"
@@ -227,19 +224,19 @@ export default function Hero() {
               rotate="rotate-[3deg]"
               avatarSrc="/Gemini_Generated_Image_3lyc4s3lyc4s3lyc.png"
               avatarAlt="Ryan Diaz"
-              className="absolute right-0 top-44 lg:right-2 lg:top-56"
+              className="absolute right-2 top-32 sm:right-0 sm:top-44 lg:right-2 lg:top-56"
             />
           </div>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-3 lg:mt-16">
-          <span className="px-2 text-sm font-medium text-neutral-700">
+        <div className="mt-10 flex flex-wrap items-center gap-2 sm:gap-3 lg:mt-16">
+          <span className="px-1 text-sm font-medium text-foreground/70 sm:px-2">
             Your in-house content team without the overhead
           </span>
           {STATS.map((stat) => (
             <span
               key={stat}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-800 ring-1 ring-black/5"
+              className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-1.5 text-xs font-medium text-card-foreground ring-1 ring-foreground/5 sm:px-4 sm:py-2 sm:text-sm"
             >
               <CheckMark />
               {stat}

@@ -11,8 +11,8 @@ import Footer4Col from "@/components/ui/footer-column";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full bg-white">
-      <div className="pointer-events-none absolute inset-0 bg-glow opacity-70" />
+    <div className="relative min-h-screen w-full bg-background">
+      <div className="pointer-events-none absolute inset-0 bg-glow opacity-70 dark:opacity-90" />
       <div className="relative">
         <Navbar />
         <Hero />
