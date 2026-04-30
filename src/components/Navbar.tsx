@@ -1,18 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
   { label: "Works", href: "#works" },
   { label: "Pricing", href: "#pricing" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
-  { label: "Blog", href: "#blog" },
 ];
 
 export default function Navbar() {
@@ -29,27 +28,16 @@ export default function Navbar() {
 
   return (
     <header className="relative z-30 w-full">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 sm:py-6 lg:px-10">
-        <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand shadow-[0_8px_20px_-6px_rgba(255,90,31,0.55)] sm:h-10 sm:w-10">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-4 w-4 text-white sm:h-5 sm:w-5"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20.5 3.5c-7.2.5-12 4.5-13.5 11L3 18l3.5-4c6.5-1.5 10.5-6.3 11-13.5l3-1Z"
-                fill="currentColor"
-              />
-              <path
-                d="M3 21l5.5-5.5"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 sm:py-3 lg:px-10">
+        <Link href="/" className="flex items-center gap-0">
+          <Image
+            src="/ChatGPT_Image_Apr_30__2026__07_01_59_PM-removebg-preview.png"
+            alt="The Nerdish Mic"
+            width={128}
+            height={128}
+            priority
+            className="h-14 w-14 object-cover sm:h-16 sm:w-16 lg:h-20 lg:w-20"
+          />
           <span className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
             thenerdishmic
           </span>
@@ -72,10 +60,12 @@ export default function Navbar() {
           <ThemeToggle />
 
           <Link
-            href="#contact"
+            href="https://cal.com/thenerdishmic/discovery"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group hidden items-center gap-2 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm font-medium text-background transition-colors hover:opacity-90 sm:inline-flex"
           >
-            Contact
+            Book a call
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-background text-foreground transition-transform group-hover:translate-x-0.5">
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
                 <path
@@ -135,11 +125,13 @@ export default function Navbar() {
 
             <div className="border-t border-foreground/10 p-5">
               <Link
-                href="#contact"
+                href="https://cal.com/thenerdishmic/discovery"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="group flex items-center justify-between gap-2 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm font-medium text-background"
               >
-                Contact
+                Book a call
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-background text-foreground">
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
                     <path

@@ -33,10 +33,11 @@ const themeInitScript = `
 (function () {
   try {
     var stored = localStorage.getItem('tnm-theme');
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var resolved = stored ? stored : (prefersDark ? 'dark' : 'light');
+    var resolved = stored ? stored : 'dark';
     if (resolved === 'dark') document.documentElement.classList.add('dark');
-  } catch (e) {}
+  } catch (e) {
+    document.documentElement.classList.add('dark');
+  }
 })();
 `;
 

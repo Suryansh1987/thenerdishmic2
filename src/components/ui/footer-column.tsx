@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import type { SVGProps } from "react";
 
 function Instagram(props: SVGProps<SVGSVGElement>) {
@@ -45,10 +46,7 @@ function Youtube(props: SVGProps<SVGSVGElement>) {
 }
 
 const data = {
-  instaLink: "https://instagram.com/thenerdishmic",
-  twitterLink: "https://twitter.com/thenerdishmic",
-  youtubeLink: "https://youtube.com/@thenerdishmic",
-  linkedinLink: "https://linkedin.com/company/thenerdishmic",
+  instaLink: "https://www.instagram.com/moreonprithvi/",
   services: {
     websites: "#services",
     branding: "#services",
@@ -67,8 +65,8 @@ const data = {
     livechat: "#contact",
   },
   contact: {
-    email: "hello@thenerdishmic.com",
-    phone: "+91 86373 73116",
+    email: "thenerdishmic098@gmail.com",
+    phone: "+91 9335498902",
     address: "Remote-first · India & US",
   },
   company: {
@@ -79,10 +77,7 @@ const data = {
 };
 
 const socialLinks = [
-  { icon: Instagram, label: "Instagram", href: data.instaLink },
-  { icon: Twitter, label: "Twitter", href: data.twitterLink },
-  { icon: Youtube, label: "YouTube", href: data.youtubeLink },
-  { icon: Linkedin, label: "LinkedIn", href: data.linkedinLink },
+  { icon: Instagram, label: "Instagram", href: data.instaLink }
 ];
 
 const aboutLinks = [
@@ -113,25 +108,13 @@ const contactInfo = [
 
 function BrandLogo() {
   return (
-    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-[0_8px_20px_-6px_rgba(255,90,31,0.55)]">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        className="h-4 w-4 text-white"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M20.5 3.5c-7.2.5-12 4.5-13.5 11L3 18l3.5-4c6.5-1.5 10.5-6.3 11-13.5l3-1Z"
-          fill="currentColor"
-        />
-        <path
-          d="M3 21l5.5-5.5"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-        />
-      </svg>
-    </span>
+    <Image
+     src="/ChatGPT_Image_Apr_30__2026__07_01_59_PM-removebg-preview.png"
+      alt="The Nerdish Mic"
+      width={128}
+      height={128}
+      className="h-20 w-20 object-cover sm:h-24 sm:w-24"
+    />
   );
 }
 
@@ -141,7 +124,7 @@ export default function Footer4Col() {
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <div className="flex justify-center gap-2 text-primary sm:justify-start">
+            <div className="flex items-center justify-center gap-0 text-primary sm:justify-start">
               <BrandLogo />
               <span className="text-2xl font-semibold text-foreground">
                 {data.company.name}

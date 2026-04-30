@@ -175,7 +175,7 @@ export default function PricingSection5() {
 
   return (
     <section
-      id="plans"
+      id="pricing"
       className="relative mx-auto max-w-7xl px-4 pt-12 sm:pt-16 lg:pt-20"
       ref={pricingRef}
     >
@@ -267,16 +267,19 @@ export default function PricingSection5() {
               </CardHeader>
 
               <CardContent className="pt-0">
-                <button
+                <a
+                  href="https://cal.com/thenerdishmic/discovery"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
-                    "mb-4 w-full rounded-xl p-3 text-base sm:p-4 sm:text-lg",
+                    "mb-4 block w-full rounded-xl p-3 text-center text-base sm:p-4 sm:text-lg",
                     plan.popular
                       ? "border border-orange-400 bg-gradient-to-t from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/50"
                       : "border border-foreground/20 bg-gradient-to-t from-neutral-900 to-neutral-600 text-white shadow-lg shadow-neutral-900/50 dark:from-neutral-700 dark:to-neutral-500",
                   )}
                 >
                   {plan.buttonText}
-                </button>
+                </a>
                 <button className="mb-6 w-full rounded-xl border border-foreground/10 bg-surface-2 p-3 text-base text-foreground shadow-sm sm:p-4 sm:text-lg">
                   Request Custom Proposal
                 </button>

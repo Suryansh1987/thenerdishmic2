@@ -158,7 +158,9 @@ export default function Services() {
             </div>
 
             <Link
-              href="#book"
+              href="https://cal.com/thenerdishmic/discovery"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group mt-8 inline-flex items-center gap-3 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm font-medium text-background transition-colors hover:opacity-90 sm:mt-10 sm:pl-6 sm:text-base"
             >
               Book a discovery call

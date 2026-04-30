@@ -187,7 +187,9 @@ export default function Hero() {
 
             <div className="mt-7 flex flex-col items-start gap-3 sm:mt-8">
               <Link
-                href="#book"
+                href="https://cal.com/thenerdishmic/discovery"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 rounded-full bg-foreground py-2 pl-5 pr-2 text-sm font-medium text-background transition-colors hover:opacity-90 sm:pl-6 sm:text-base"
               >
                 Book a Call

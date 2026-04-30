@@ -61,16 +61,16 @@ export default function Works() {
               Work that moves <span className="text-primary">numbers</span>.
             </h2>
             <p className="mt-4 max-w-xl text-base text-foreground/70 sm:mt-5 sm:text-lg">
-              Websites, brand films, ad creative and automations we&rsquo;ve
-              shipped for founders and challenger brands. Hover any tile to
-              play with sound.
+             We transform long-form brand narratives and podcasts into high-trust assets that resonate instantly with your audience.
             </p>
           </div>
           <a
-            href="#contact"
+            href="https://cal.com/thenerdishmic/discovery"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 rounded-full bg-foreground py-2 pl-4 pr-2 text-sm font-medium text-background transition-colors hover:opacity-90 sm:pl-5"
           >
-            See full portfolio
+            Book a call
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-background text-foreground transition-transform group-hover:translate-x-0.5">
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
                 <path

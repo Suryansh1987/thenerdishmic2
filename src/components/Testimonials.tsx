@@ -71,16 +71,16 @@ export default function Testimonials() {
       badgeText="Real Appreciation From Real Conversations"
       testimonials={testimonials}
       trustedCompanies={[
-        "courseera",
-        "Meta",
-        "NBA",
-        "NFL",
-        "UN",
-        "Eluna Network",
-        "Good Morning Gorgeous",
+        { name: "Coursera", logo: "/brands/coursera.svg" },
+        { name: "Meta", logo: "/brands/meta.svg" },
+        { name: "NBA", logo: "/brands/nba.svg" },
+        { name: "NFL", logo: "/brands/nfl.svg" },
+        { name: "UN", logo: "/brands/un.svg" },
+        { name: "Eluna Network", logo: "/brands/eluna%20network.jpeg" },
+        { name: "Good Morning Gorgeous", logo: "/brands/good%20morning%20gorgeus.webp" },
         "Serenitree Yoga",
-        "Genxsis",
-        "Apricity",
+        { name: "Genxsis", logo: "/brands/genxis.jpg.jpeg" },
+        { name: "Apricity", logo: "/brands/Apricity%20counselling.jpeg" },
       ]}
       trustedCompaniesTitle="Trusted by leading brands, networks, and founder-led businesses"
     />

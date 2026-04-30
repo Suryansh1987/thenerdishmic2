@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Quote, Star } from "lucide-react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export interface Testimonial {
@@ -16,13 +17,15 @@ export interface Testimonial {
   avatar: string;
 }
 
+export type TrustedCompany = string | { name: string; logo?: string };
+
 export interface AnimatedTestimonialsProps {
   title?: string;
   subtitle?: string;
   badgeText?: string;
   testimonials?: Testimonial[];
   autoRotateInterval?: number;
-  trustedCompanies?: string[];
+  trustedCompanies?: TrustedCompany[];
   trustedCompaniesTitle?: string;
   className?: string;
 }
@@ -91,7 +94,7 @@ export function AnimatedTestimonials({
   return (
     <section
       ref={sectionRef}
-      id="testimonials"
+      id="reviews"
       className={`overflow-hidden bg-muted/30 py-16 sm:py-20 md:py-24 ${className || ""}`}
     >
       <div className="px-4 md:px-6">
@@ -208,15 +211,31 @@ export function AnimatedTestimonials({
             <h3 className="mb-6 text-xs font-medium text-muted-foreground sm:mb-8 sm:text-sm">
               {trustedCompaniesTitle}
             </h3>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 sm:gap-x-10 sm:gap-y-6 md:gap-x-12 md:gap-y-8">
-              {trustedCompanies.map((company) => (
-                <div
-                  key={company}
-                  className="text-base font-semibold text-muted-foreground/60 sm:text-xl md:text-2xl"
-                >
-                  {company}
-                </div>
-              ))}
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-10 sm:gap-y-6 md:gap-x-12 md:gap-y-8">
+              {trustedCompanies.map((company) => {
+                const name = typeof company === "string" ? company : company.name;
+                const logo = typeof company === "string" ? undefined : company.logo;
+                if (logo) {
+                  return (
+                    <Image
+                      key={name}
+                      src={logo}
+                      alt={name}
+                      width={120}
+                      height={48}
+                      className="h-8 w-auto object-contain opacity-70 transition hover:opacity-100 sm:h-10 md:h-12"
+                    />
+                  );
+                }
+                return (
+                  <div
+                    key={name}
+                    className="text-base font-semibold text-muted-foreground/60 sm:text-xl md:text-2xl"
+                  >
+                    {name}
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         )}
