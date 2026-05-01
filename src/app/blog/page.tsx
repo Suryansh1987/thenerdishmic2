@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Navbar from "@/components/Navbar";
 import Footer4Col from "@/components/ui/footer-column";
-import { formatDate, getAllPosts } from "@/lib/blog";
+import { formatDate, getPaginatedPosts } from "@/lib/blog";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -27,8 +27,39 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogIndexPage() {
-  const posts = getAllPosts();
+type SearchParams = Promise<{ page?: string | string[] }>;
+
+function pageHref(n: number): string {
+  return n === 1 ? "/blog" : `/blog?page=${n}`;
+}
+
+function buildPageList(current: number, total: number): Array<number | "…"> {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  const out: Array<number | "…"> = [1];
+  const start = Math.max(2, current - 1);
+  const end = Math.min(total - 1, current + 1);
+  if (start > 2) out.push("…");
+  for (let i = start; i <= end; i++) out.push(i);
+  if (end < total - 1) out.push("…");
+  out.push(total);
+  return out;
+}
+
+export default async function BlogIndexPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const sp = await searchParams;
+  const raw = Array.isArray(sp.page) ? sp.page[0] : sp.page;
+  const requested = raw ? parseInt(raw, 10) : 1;
+  const { items, page, totalPages, hasPrev, hasNext } = getPaginatedPosts(
+    Number.isFinite(requested) ? requested : 1,
+  );
+
+  const pageList = buildPageList(page, totalPages);
 
   return (
     <div className="relative min-h-screen w-full bg-background">
@@ -52,7 +83,7 @@ export default function BlogIndexPage() {
           </header>
 
           <ul className="grid gap-6 sm:gap-8">
-            {posts.map(({ meta }) => (
+            {items.map(({ meta }) => (
               <li key={meta.slug}>
                 <Link
                   href={`/blog/${meta.slug}`}
@@ -98,6 +129,116 @@ export default function BlogIndexPage() {
               </li>
             ))}
           </ul>
+
+          {totalPages > 1 && (
+            <nav
+              aria-label="Pagination"
+              className="mt-12 flex flex-wrap items-center justify-center gap-2 sm:mt-16"
+            >
+              {hasPrev ? (
+                <Link
+                  href={pageHref(page - 1)}
+                  rel="prev"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/35 hover:text-foreground"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                    <path
+                      d="M19 12H5M11 18l-6-6 6-6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Previous
+                </Link>
+              ) : (
+                <span
+                  aria-disabled="true"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/30"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                    <path
+                      d="M19 12H5M11 18l-6-6 6-6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Previous
+                </span>
+              )}
+
+              <ul className="flex flex-wrap items-center gap-1">
+                {pageList.map((entry, idx) =>
+                  entry === "…" ? (
+                    <li
+                      key={`gap-${idx}`}
+                      aria-hidden="true"
+                      className="px-2 text-sm text-foreground/40"
+                    >
+                      &hellip;
+                    </li>
+                  ) : entry === page ? (
+                    <li key={entry}>
+                      <span
+                        aria-current="page"
+                        className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-foreground px-3 text-sm font-medium text-background"
+                      >
+                        {entry}
+                      </span>
+                    </li>
+                  ) : (
+                    <li key={entry}>
+                      <Link
+                        href={pageHref(entry)}
+                        aria-label={`Go to page ${entry}`}
+                        className="inline-flex h-9 min-w-9 items-center justify-center rounded-full border border-foreground/10 px-3 text-sm text-foreground/75 transition-colors hover:border-foreground/30 hover:text-foreground"
+                      >
+                        {entry}
+                      </Link>
+                    </li>
+                  ),
+                )}
+              </ul>
+
+              {hasNext ? (
+                <Link
+                  href={pageHref(page + 1)}
+                  rel="next"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/35 hover:text-foreground"
+                >
+                  Next
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                    <path
+                      d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
+              ) : (
+                <span
+                  aria-disabled="true"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/30"
+                >
+                  Next
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                    <path
+                      d="M5 12h14M13 6l6 6-6 6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              )}
+            </nav>
+          )}
         </main>
 
         <Footer4Col />
