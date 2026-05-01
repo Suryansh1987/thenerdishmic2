@@ -18,7 +18,6 @@ export default function Home() {
         <Hero />
         <BrandScroll />
         <Services />
-        <Works />
         <Reels />
         <PricingSection5 />
         <Testimonials />

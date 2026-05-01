@@ -31,7 +31,7 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 sm:py-3 lg:px-10">
         <Link href="/" className="flex items-center gap-0">
           <Image
-            src="/ChatGPT_Image_Apr_30__2026__07_01_59_PM-removebg-preview.png"
+            src="/tnm-logo.png"
             alt="The Nerdish Mic"
             width={128}
             height={128}
