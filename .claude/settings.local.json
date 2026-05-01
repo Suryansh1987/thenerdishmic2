@@ -3,7 +3,12 @@
     "allow": [
       "Bash(curl -fSL -A \"Mozilla/5.0\" -o meta.svg \"https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg\")",
       "Bash(curl -fSL -A \"Mozilla/5.0\" -o nba.svg \"https://upload.wikimedia.org/wikipedia/en/0/03/National_Basketball_Association_logo.svg\")",
-      "Bash(curl -fSL -A \"Mozilla/5.0\" -o coursera.svg \"https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg\")"
+      "Bash(curl -fSL -A \"Mozilla/5.0\" -o coursera.svg \"https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg\")",
+      "Skill(update-config)",
+      "Write",
+      "Edit",
+      "Bash(*)",
+      "PowerShell(*)"
     ]
   }
 }
