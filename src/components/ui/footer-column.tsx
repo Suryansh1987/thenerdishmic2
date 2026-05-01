@@ -109,7 +109,7 @@ const contactInfo = [
 function BrandLogo() {
   return (
     <Image
-     src="/ChatGPT_Image_Apr_30__2026__07_01_59_PM-removebg-preview.png"
+src="/tnm-logo.png"
       alt="The Nerdish Mic"
       width={128}
       height={128}

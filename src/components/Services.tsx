@@ -186,7 +186,7 @@ export default function Services() {
               return (
                 <div
                   key={s.step}
-                  className="sm:sticky"
+                  className="sticky"
                   style={{
                     top: `${120 + i * 14}px`,
                     marginBottom: isLast ? 0 : "6vh",
