@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { SVGProps } from "react";
 
+import { getAllPosts } from "@/lib/blog";
+
 function Instagram(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
@@ -59,11 +61,6 @@ const data = {
     works: "#works",
     careers: "#careers",
   },
-  help: {
-    faqs: "#faq",
-    support: "#support",
-    livechat: "#contact",
-  },
   contact: {
     email: "thenerdishmic098@gmail.com",
     phone: "+91 9335498902",
@@ -94,10 +91,14 @@ const serviceLinks = [
   { text: "AI Automation", href: data.services.automation },
 ];
 
-const helpfulLinks = [
-  { text: "FAQs", href: data.help.faqs },
-  { text: "Support", href: data.help.support },
-  { text: "Live Chat", href: data.help.livechat, hasIndicator: true },
+const blogLinks = [
+  ...getAllPosts()
+    .slice(0, 3)
+    .map(({ meta }) => ({
+      text: meta.title,
+      href: `/blog/${meta.slug}`,
+    })),
+  { text: "All articles", href: "/blog" },
 ];
 
 const contactInfo = [
@@ -184,28 +185,16 @@ export default function Footer4Col() {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium">Helpful Links</p>
+              <p className="text-lg font-medium">From the Blog</p>
               <ul className="mt-8 space-y-4 text-sm">
-                {helpfulLinks.map(({ text, href, hasIndicator }) => (
-                  <li key={text}>
-                    <a
+                {blogLinks.map(({ text, href }) => (
+                  <li key={href}>
+                    <Link
+                      className="text-secondary-foreground/70 transition hover:text-foreground"
                       href={href}
-                      className={
-                        hasIndicator
-                          ? "group flex justify-center gap-1.5 sm:justify-start"
-                          : "text-secondary-foreground/70 transition hover:text-foreground"
-                      }
                     >
-                      <span className="text-secondary-foreground/70 transition group-hover:text-foreground">
-                        {text}
-                      </span>
-                      {hasIndicator && (
-                        <span className="relative flex size-2">
-                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                          <span className="relative inline-flex size-2 rounded-full bg-primary" />
-                        </span>
-                      )}
-                    </a>
+                      {text}
+                    </Link>
                   </li>
                 ))}
               </ul>

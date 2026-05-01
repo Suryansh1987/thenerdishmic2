@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { CustomCursor } from "@/components/CustomCursor";
+import { SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "thenerdishmic: Growth, automation & websites in one studio",
   description:
     "Full-stack marketing agency. We build the website, run the automation, edit the content and scale the brand, so founders can ship and sell.",
+  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
