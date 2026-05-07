@@ -4,18 +4,16 @@ import { getAllPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/`,
-      lastModified: now,
+      lastModified: new Date("2026-05-01"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/blog`,
-      lastModified: now,
+      lastModified: new Date("2026-05-01"),
       changeFrequency: "weekly",
       priority: 0.8,
     },

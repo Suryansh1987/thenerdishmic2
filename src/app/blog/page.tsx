@@ -6,28 +6,40 @@ import Footer4Col from "@/components/ui/footer-column";
 import { formatDate, getPaginatedPosts } from "@/lib/blog";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: `Blog | ${SITE_NAME}`,
-  description:
-    "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
-  alternates: { canonical: `${SITE_URL}/blog` },
-  openGraph: {
-    type: "website",
-    url: `${SITE_URL}/blog`,
-    title: `Blog | ${SITE_NAME}`,
-    description:
-      "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
-    siteName: SITE_NAME,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Blog | ${SITE_NAME}`,
-    description:
-      "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
-  },
-};
-
 type SearchParams = Promise<{ page?: string | string[] }>;
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  const raw = Array.isArray(sp.page) ? sp.page[0] : sp.page;
+  const page = raw ? parseInt(raw, 10) : 1;
+  const isPaginated = Number.isFinite(page) && page > 1;
+
+  return {
+    title: `Blog | ${SITE_NAME}`,
+    description:
+      "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
+    alternates: { canonical: `${SITE_URL}/blog` },
+    ...(isPaginated && { robots: { index: false, follow: true } }),
+    openGraph: {
+      type: "website",
+      url: `${SITE_URL}/blog`,
+      title: `Blog | ${SITE_NAME}`,
+      description:
+        "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
+      siteName: SITE_NAME,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Blog | ${SITE_NAME}`,
+      description:
+        "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
+    },
+  };
+}
 
 function pageHref(n: number): string {
   return n === 1 ? "/blog" : `/blog?page=${n}`;
