@@ -12,15 +12,30 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-
       {
-        source: "/:path*",
+        source: "/content.php",
         headers: [
           {
             key: "X-Robots-Tag",
-            value: "index, follow",
+            value: "noindex",
           },
         ],
+      },
+    ];
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "thenerdishmic.com",
+          },
+        ],
+        destination: "https://www.thenerdishmic.com/:path*",
+        permanent: true,
       },
     ];
   },
