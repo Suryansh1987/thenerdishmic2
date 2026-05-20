@@ -577,6 +577,10 @@ body:has(.instaflow-page) summary {
   text-align: left;
 }
 
+.instaflow-hero-sticker {
+  max-width: min(220px, 40vw);
+}
+
 .instaflow-downloads {
   display: flex;
   flex-wrap: wrap;
@@ -1378,6 +1382,10 @@ body:has(.instaflow-page) summary {
   color: var(--ink);
 }
 
+.instaflow-footer-downloads .instaflow-btn {
+  justify-content: flex-start;
+}
+
 .instaflow-footer-grid {
   display: grid;
   grid-template-columns: 1.2fr repeat(3, minmax(0, 0.7fr));
@@ -1507,6 +1515,10 @@ body:has(.instaflow-page) summary {
     grid-template-columns: 1fr;
   }
 
+  .instaflow-side-stats {
+    gap: 20px;
+  }
+
   .instaflow-app-sidebar {
     border-right: 0;
     border-bottom: 3px solid var(--line);
@@ -1514,6 +1526,16 @@ body:has(.instaflow-page) summary {
 
   .instaflow-price-card-highlight {
     transform: rotate(-0.35deg);
+  }
+
+  .instaflow-hero-sticker-a {
+    top: 28px !important;
+    right: 16px !important;
+  }
+
+  .instaflow-hero-sticker-b {
+    top: 250px !important;
+    right: 24px !important;
   }
 }
 
@@ -1535,12 +1557,74 @@ body:has(.instaflow-page) summary {
     font-size: 16px;
   }
 
+  .instaflow-hero-grid {
+    gap: 24px;
+  }
+
+  .instaflow-live-row {
+    flex-wrap: wrap;
+  }
+
+  .instaflow-downloads {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .instaflow-downloads .instaflow-btn {
+    width: 100%;
+  }
+
+  .instaflow-product-grid {
+    margin-top: 44px;
+  }
+
+  .instaflow-pane-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .instaflow-message-row {
+    gap: 10px;
+  }
+
+  .instaflow-price-value {
+    font-size: clamp(56px, 14vw, 72px);
+  }
+
+  .instaflow-pricing-header {
+    align-items: flex-start;
+  }
+
+  .instaflow-trust-row {
+    gap: 10px;
+    font-size: 14px;
+  }
+
   .instaflow-faq-question {
     font-size: 24px;
   }
 
   .instaflow-footer-wordmark {
     margin-top: 24px;
+  }
+
+  .instaflow-footer-downloads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .instaflow-footer-downloads .instaflow-btn:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .instaflow-hero-sticker-a {
+    top: 12px !important;
+    right: 10px !important;
+  }
+
+  .instaflow-hero-sticker-b {
+    top: 210px !important;
+    right: 8px !important;
   }
 }
 
@@ -1566,11 +1650,140 @@ body:has(.instaflow-page) summary {
     padding: 18px;
   }
 
+  .instaflow-nav {
+    min-height: 76px;
+    gap: 14px;
+  }
+
+  .instaflow-nav-actions {
+    gap: 10px;
+  }
+
+  .instaflow-nav-actions > .instaflow-btn,
+  .instaflow-menu summary > .instaflow-btn {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .instaflow-display {
+    font-size: clamp(44px, 16vw, 58px);
+    line-height: 0.92;
+  }
+
+  .instaflow-lead {
+    font-size: 17px;
+  }
+
+  .instaflow-app-title {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .instaflow-app-body {
+    min-height: 0;
+  }
+
+  .instaflow-app-sidebar {
+    padding: 14px;
+  }
+
+  .instaflow-side-list {
+    gap: 10px;
+  }
+
+  .instaflow-side-item {
+    padding: 10px 12px;
+  }
+
   .instaflow-message-row {
     grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .instaflow-app-stat {
+    padding: 14px 16px 16px;
+  }
+
+  .instaflow-app-stat-value {
+    font-size: 30px;
+  }
+
+  .instaflow-step-number-row {
+    gap: 12px;
+  }
+
+  .instaflow-step-number {
+    font-size: 44px;
+  }
+
+  .instaflow-step-title {
+    font-size: 28px;
+  }
+
+  .instaflow-account-card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .instaflow-account-card .instaflow-tag {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .instaflow-bar-grid {
+    gap: 8px;
+    min-height: 210px;
+  }
+
+  .instaflow-bar {
+    min-height: 140px;
+  }
+
+  .instaflow-faq-trigger {
+    padding: 18px 18px 16px;
+  }
+
+  .instaflow-faq-question {
+    font-size: 20px;
+  }
+
+  .instaflow-faq-answer {
+    padding: 0 18px 18px;
+    font-size: 16px;
+  }
+
+  .instaflow-footer-grid {
+    padding: 40px 0 32px;
+  }
+
+  .instaflow-footer-downloads {
+    grid-template-columns: 1fr;
+  }
+
+  .instaflow-footer-downloads .instaflow-btn:last-child {
+    grid-column: auto;
+  }
+
+  .instaflow-footer-bottom {
+    font-size: 11px;
+  }
+
+  .instaflow-hero-sticker {
+    max-width: 148px;
   }
 
   .instaflow-sticker {
     transform: rotate(3deg) !important;
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .instaflow-hero-sticker-a {
+    top: 6px !important;
+    right: 0 !important;
+  }
+
+  .instaflow-hero-sticker-b {
+    top: 188px !important;
+    right: 0 !important;
   }
 }

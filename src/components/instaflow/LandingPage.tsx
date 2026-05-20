@@ -161,8 +161,15 @@ function Hero() {
     <section id="top" className="instaflow-hero instaflow-section">
       <div className="instaflow-container">
         <div style={{ position: "relative" }}>
-          <Sticker style={{ top: "90px", right: "80px", transform: "rotate(8deg)" }}>{`\u21B3 10x reply rate`}</Sticker>
-          <Sticker style={{ top: "360px", right: "240px", transform: "rotate(-5deg)", background: "var(--surface)", color: "var(--fg)" }}>{`\u26A1 live in 5 min`}</Sticker>
+          <Sticker className="instaflow-hero-sticker instaflow-hero-sticker-a" style={{ top: "90px", right: "80px", transform: "rotate(8deg)" }}>
+            {`\u21B3 10x reply rate`}
+          </Sticker>
+          <Sticker
+            className="instaflow-hero-sticker instaflow-hero-sticker-b"
+            style={{ top: "360px", right: "240px", transform: "rotate(-5deg)", background: "var(--surface)", color: "var(--fg)" }}
+          >
+            {`\u26A1 live in 5 min`}
+          </Sticker>
           <div className="instaflow-hero-grid">
             <div>
               <div className="instaflow-live-row">
@@ -606,7 +613,7 @@ function Footer() {
             <p style={{ marginTop: 16, maxWidth: 420, fontSize: 18, lineHeight: 1.55 }}>
               Outreach software for founders who want the speed of automation without the sloppy feel of generic DM blasts.
             </p>
-            <div className="instaflow-downloads" style={{ marginTop: 24 }}>
+            <div className="instaflow-downloads instaflow-footer-downloads" style={{ marginTop: 24 }}>
               <Button href="#pricing" variant="default" aria-label="Download for Windows">
                 <WindowsIcon />
                 Windows
