@@ -278,3 +278,1299 @@ body {
     0 0 28px 8px rgba(250, 204, 21, 0.55),
     0 0 80px 22px rgba(250, 204, 21, 0.2);
 }
+
+body:has(.instaflow-page) .tnm-cursor,
+body:has(.instaflow-page) .tnm-cursor-ring {
+  display: none;
+}
+
+html:has(.instaflow-page),
+html:has(.instaflow-page) body,
+body:has(.instaflow-page),
+body:has(.instaflow-page) a,
+body:has(.instaflow-page) button,
+body:has(.instaflow-page) [role="button"],
+body:has(.instaflow-page) input,
+body:has(.instaflow-page) textarea,
+body:has(.instaflow-page) select,
+body:has(.instaflow-page) label,
+body:has(.instaflow-page) summary {
+  cursor: auto;
+}
+
+.instaflow-page {
+  --accent: #a8e840;
+  --accent-soft: #c9f37a;
+  --accent-dark: #6ba81f;
+  --accent-glow: rgba(168, 232, 64, 0.45);
+  --ink: #0a0a0a;
+  --ink-2: #1a1a1a;
+  --paper: #f4f1e8;
+  --paper-2: #e9e4d2;
+  --paper-3: #ffffff;
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1e1e1e;
+  --fg: #fafaf7;
+  --fg-dim: rgba(250, 250, 247, 0.62);
+  --fg-dimmer: rgba(250, 250, 247, 0.38);
+  --line: #fafaf7;
+  --line-soft: rgba(250, 250, 247, 0.16);
+  --shadow-hard-sm: 4px 4px 0 0 var(--line);
+  --shadow-hard: 8px 8px 0 0 var(--line);
+  --shadow-hard-lg: 12px 12px 0 0 var(--line);
+  --font-display: var(--font-insta-display), sans-serif;
+  --font-body: var(--font-insta-body), sans-serif;
+  --font-mono: var(--font-insta-mono), ui-monospace, monospace;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+  color: var(--fg);
+  font-family: var(--font-body);
+}
+
+.instaflow-page * {
+  box-sizing: border-box;
+}
+
+.instaflow-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.instaflow-page button,
+.instaflow-page input,
+.instaflow-page textarea {
+  font: inherit;
+}
+
+.instaflow-shell {
+  position: relative;
+  overflow: clip;
+}
+
+.instaflow-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.instaflow-container {
+  width: min(1328px, calc(100% - 112px));
+  margin: 0 auto;
+}
+
+.instaflow-section {
+  position: relative;
+  padding: 120px 0;
+}
+
+.instaflow-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.instaflow-display {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+.instaflow-display-2 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.instaflow-lead {
+  max-width: 620px;
+  font-size: clamp(18px, 1.55vw, 21px);
+  line-height: 1.5;
+  color: var(--fg-dim);
+}
+
+.instaflow-underline {
+  background-image: linear-gradient(transparent 65%, var(--accent) 65%, var(--accent) 95%, transparent 95%);
+  background-repeat: no-repeat;
+  display: inline;
+}
+
+.instaflow-card {
+  border: 3px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-hard);
+  transform: translate(var(--card-translate-x, 0px), var(--card-translate-y, 0px)) rotate(var(--card-rotate, 0deg));
+}
+
+.instaflow-card-hover {
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.instaflow-card-hover:hover {
+  transform: translate(calc(var(--card-translate-x, 0px) - 3px), calc(var(--card-translate-y, 0px) - 3px)) rotate(var(--card-hover-rotate, -1deg));
+  box-shadow: 11px 11px 0 0 var(--line);
+}
+
+.instaflow-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border: 3px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--fg);
+  box-shadow: var(--shadow-hard-sm);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.instaflow-btn svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.instaflow-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--line);
+}
+
+.instaflow-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 0 var(--line);
+}
+
+.instaflow-btn-primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-btn-ghost {
+  background: transparent;
+}
+
+.instaflow-btn-lg {
+  padding: 18px 28px;
+  font-size: 17px;
+  box-shadow: var(--shadow-hard);
+}
+
+.instaflow-btn-lg:hover {
+  box-shadow: 10px 10px 0 0 var(--line);
+}
+
+.instaflow-btn-lg:active {
+  box-shadow: 0 0 0 0 var(--line);
+}
+
+.instaflow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.instaflow-pill-accent {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.instaflow-tag-accent {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-sticker {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 3px solid var(--line);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  box-shadow: var(--shadow-hard-sm);
+  padding: 10px 18px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  z-index: 2;
+}
+
+.instaflow-live-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.instaflow-live-dot,
+.instaflow-status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.instaflow-live-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+.instaflow-hero {
+  padding: 72px 0 96px;
+}
+
+.instaflow-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 34px;
+  max-width: 1100px;
+  text-align: left;
+}
+
+.instaflow-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.instaflow-download-note {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-dimmer);
+}
+
+.instaflow-product-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 32px;
+  align-items: start;
+  margin-top: 72px;
+}
+
+.instaflow-app-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.instaflow-app-topbar,
+.instaflow-app-footer,
+.instaflow-stat-row,
+.instaflow-faq-item,
+.instaflow-step-row,
+.instaflow-nav {
+  border-color: var(--line);
+}
+
+.instaflow-app-topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 3px solid var(--line);
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.instaflow-traffic {
+  display: flex;
+  gap: 10px;
+}
+
+.instaflow-traffic span {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: #e96d5b;
+}
+
+.instaflow-traffic span:nth-child(2) {
+  background: #f7b84e;
+}
+
+.instaflow-traffic span:nth-child(3) {
+  background: var(--accent);
+}
+
+.instaflow-app-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.instaflow-app-body {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  min-height: 460px;
+}
+
+.instaflow-app-sidebar {
+  border-right: 3px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 18px;
+}
+
+.instaflow-pro-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--shadow-hard-sm);
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.instaflow-side-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.instaflow-side-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.instaflow-side-item-active {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-main-pane {
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+}
+
+.instaflow-pane-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.instaflow-pane-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.instaflow-message-list {
+  display: grid;
+  gap: 12px;
+}
+
+.instaflow-message-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 120px) minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.instaflow-message-handle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg);
+  letter-spacing: 0.06em;
+}
+
+.instaflow-message-preview {
+  color: var(--fg-dim);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.instaflow-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.instaflow-status-replied {
+  color: var(--accent);
+}
+
+.instaflow-status-sending {
+  color: #f7b84e;
+}
+
+.instaflow-status-sending .instaflow-status-dot {
+  background: #f7b84e;
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+.instaflow-status-queued {
+  color: var(--fg-dimmer);
+}
+
+.instaflow-app-footer {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 3px solid var(--line);
+}
+
+.instaflow-app-stat {
+  padding: 16px 18px 18px;
+  border-right: 3px solid var(--line);
+}
+
+.instaflow-app-stat:last-child {
+  border-right: 0;
+}
+
+.instaflow-app-stat-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-dimmer);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.instaflow-app-stat-value {
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.instaflow-app-stat-value-accent {
+  color: var(--accent);
+}
+
+.instaflow-side-stats {
+  display: grid;
+  gap: 18px;
+}
+
+.instaflow-highlight-card {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-highlight-card .instaflow-eyebrow,
+.instaflow-highlight-card .instaflow-lead {
+  color: rgba(10, 10, 10, 0.72);
+}
+
+.instaflow-split-card {
+  display: grid;
+  gap: 16px;
+}
+
+.instaflow-thread {
+  display: grid;
+  gap: 12px;
+}
+
+.instaflow-bubble {
+  max-width: 86%;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.instaflow-bubble-accent {
+  margin-left: auto;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-small-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.instaflow-stats-thread-card {
+  --card-rotate: -1deg;
+  --card-hover-rotate: -2deg;
+}
+
+.instaflow-small-stat-card:nth-child(1) {
+  --card-rotate: 0.4deg;
+  --card-hover-rotate: -0.6deg;
+}
+
+.instaflow-small-stat-card:nth-child(2) {
+  --card-rotate: -0.4deg;
+  --card-hover-rotate: -1.4deg;
+}
+
+.instaflow-nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.85);
+  border-bottom: 3px solid var(--line);
+}
+
+.instaflow-nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  min-height: 88px;
+}
+
+.instaflow-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.instaflow-brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--line);
+  border-radius: 8px;
+  background: var(--accent);
+  box-shadow: var(--shadow-hard-sm);
+  color: var(--ink);
+  transform: rotate(-6deg);
+}
+
+.instaflow-nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.instaflow-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.instaflow-menu {
+  display: none;
+  position: relative;
+}
+
+.instaflow-menu summary {
+  list-style: none;
+}
+
+.instaflow-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.instaflow-menu-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(280px, calc(100vw - 48px));
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  background: var(--surface);
+  z-index: 10;
+}
+
+.instaflow-menu-panel a {
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.instaflow-logos {
+  padding: 28px 0;
+  background: var(--surface);
+  border-top: 3px solid var(--line);
+  border-bottom: 3px solid var(--line);
+}
+
+.instaflow-logos-marquee {
+  overflow: hidden;
+  margin-top: 18px;
+}
+
+.instaflow-logos-track {
+  display: flex;
+  gap: 42px;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.instaflow-logo-word {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--fg-dim);
+}
+
+.instaflow-how-grid {
+  display: grid;
+  gap: 32px;
+  margin-top: 42px;
+}
+
+.instaflow-step-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.95fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.instaflow-step-copy,
+.instaflow-step-visual {
+  min-width: 0;
+}
+
+.instaflow-step-copy {
+  padding: 32px;
+}
+
+.instaflow-step-number-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.instaflow-step-number {
+  font-family: var(--font-display);
+  font-size: 56px;
+  line-height: 0.9;
+  color: var(--accent);
+  -webkit-text-stroke: 2px var(--line);
+}
+
+.instaflow-step-rule {
+  height: 3px;
+  flex: 1;
+  background: var(--line);
+}
+
+.instaflow-step-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 36px);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.instaflow-step-body {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--fg-dim);
+}
+
+.instaflow-step-visual {
+  padding: 24px;
+}
+
+.instaflow-code-block,
+.instaflow-input-block,
+.instaflow-chart,
+.instaflow-list-card {
+  display: grid;
+  gap: 14px;
+}
+
+.instaflow-code-line {
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.instaflow-code-line strong {
+  color: var(--accent);
+}
+
+.instaflow-visual-tags,
+.instaflow-account-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.instaflow-account-card,
+.instaflow-input-card {
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 14px;
+}
+
+.instaflow-account-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.instaflow-avatar {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-dark));
+}
+
+.instaflow-account-label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.instaflow-account-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.instaflow-account-status-amber {
+  color: #f7b84e;
+}
+
+.instaflow-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px;
+  align-items: end;
+  min-height: 240px;
+  padding-top: 12px;
+}
+
+.instaflow-bar-col {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.instaflow-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 170px;
+  border: 2px solid var(--line);
+  background: var(--surface-2);
+}
+
+.instaflow-bar-fill {
+  background: var(--accent);
+}
+
+.instaflow-pricing {
+  background: var(--surface);
+  border-top: 3px solid var(--line);
+  border-bottom: 3px solid var(--line);
+}
+
+.instaflow-pricing-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.instaflow-toggle {
+  display: inline-flex;
+  gap: 8px;
+  border: 3px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 6px;
+}
+
+.instaflow-toggle span {
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.instaflow-toggle .is-active {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 42px;
+}
+
+.instaflow-price-card {
+  position: relative;
+  padding: 28px;
+  color: var(--fg);
+}
+
+.instaflow-price-card-highlight {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-price-card-highlight .instaflow-eyebrow,
+.instaflow-price-card-highlight .instaflow-step-body,
+.instaflow-price-card-highlight .instaflow-price-unit {
+  color: rgba(10, 10, 10, 0.72);
+}
+
+.instaflow-price-card-highlight .instaflow-feature,
+.instaflow-price-card-highlight .instaflow-price-name,
+.instaflow-price-card-highlight .instaflow-price-value,
+.instaflow-price-card-highlight .instaflow-feature-check {
+  color: var(--ink);
+}
+
+.instaflow-price-name {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.instaflow-price-line {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  margin: 18px 0 8px;
+}
+
+.instaflow-price-value {
+  font-family: var(--font-display);
+  font-size: 72px;
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.instaflow-price-unit {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.instaflow-feature-list {
+  display: grid;
+  gap: 12px;
+  margin: 22px 0 26px;
+}
+
+.instaflow-feature {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.instaflow-feature-check {
+  width: 22px;
+  height: 22px;
+  border: 2px solid currentColor;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.instaflow-sticker-plan {
+  top: -16px;
+  right: 18px;
+  transform: rotate(6deg);
+  background: var(--ink);
+  color: var(--accent);
+}
+
+.instaflow-trust-row {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: var(--fg-dim);
+  font-size: 15px;
+}
+
+.instaflow-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+  gap: 28px;
+}
+
+.instaflow-faq-copy {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+.instaflow-faq-list {
+  display: grid;
+  gap: 16px;
+}
+
+.instaflow-faq-item {
+  overflow: hidden;
+}
+
+.instaflow-faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 22px 22px 20px;
+  text-align: left;
+}
+
+.instaflow-faq-question {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.instaflow-faq-toggle {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.instaflow-faq-toggle-open {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-faq-answer {
+  padding: 0 22px 22px;
+  color: var(--fg-dim);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.instaflow-faq-open {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--line);
+}
+
+.instaflow-footer {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-footer .instaflow-btn {
+  min-width: 0;
+  padding: 10px 16px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.instaflow-footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(3, minmax(0, 0.7fr));
+  gap: 24px;
+  padding: 54px 0 44px;
+}
+
+.instaflow-footer-links {
+  display: grid;
+  gap: 12px;
+}
+
+.instaflow-footer-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.6);
+}
+
+.instaflow-footer-wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(120px, 18vw, 240px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  color: transparent;
+  -webkit-text-stroke: 3px var(--ink);
+}
+
+.instaflow-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0 28px;
+  border-top: 2px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .instaflow-container {
+    width: min(100%, calc(100% - 64px));
+  }
+
+  .instaflow-product-grid,
+  .instaflow-pricing-grid,
+  .instaflow-faq-layout,
+  .instaflow-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .instaflow-step-row,
+  .instaflow-step-row:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .instaflow-pricing-header,
+  .instaflow-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .instaflow-faq-copy {
+    position: static;
+  }
+}
+
+@media (max-width: 900px) {
+  .instaflow-nav {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+  .instaflow-nav-links,
+  .instaflow-nav-actions .instaflow-signin {
+    display: none;
+  }
+
+  .instaflow-menu {
+    display: block;
+  }
+
+  .instaflow-product-grid,
+  .instaflow-app-body,
+  .instaflow-app-footer,
+  .instaflow-small-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .instaflow-app-sidebar {
+    border-right: 0;
+    border-bottom: 3px solid var(--line);
+  }
+
+  .instaflow-price-card-highlight {
+    transform: rotate(-0.35deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .instaflow-container {
+    width: min(100%, calc(100% - 48px));
+  }
+
+  .instaflow-section {
+    padding: 88px 0;
+  }
+
+  .instaflow-hero {
+    padding: 56px 0 72px;
+  }
+
+  .instaflow-sticker {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+
+  .instaflow-faq-question {
+    font-size: 24px;
+  }
+
+  .instaflow-footer-wordmark {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .instaflow-container {
+    width: min(100%, calc(100% - 32px));
+  }
+
+  .instaflow-brand {
+    font-size: 24px;
+  }
+
+  .instaflow-brand-mark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .instaflow-app-topbar,
+  .instaflow-main-pane,
+  .instaflow-step-copy,
+  .instaflow-step-visual,
+  .instaflow-price-card {
+    padding: 18px;
+  }
+
+  .instaflow-message-row {
+    grid-template-columns: 1fr;
+  }
+
+  .instaflow-sticker {
+    transform: rotate(3deg) !important;
+  }
+}
