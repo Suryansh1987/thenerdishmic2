@@ -23,30 +23,6 @@ function Instagram(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function Twitter(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
-function Linkedin(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm6.5 0h3.8v1.5h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.65 4.78 6.1V20.5h-4v-4.85c0-1.16-.02-2.65-1.62-2.65-1.62 0-1.87 1.27-1.87 2.57v4.93h-4v-11Z" />
-    </svg>
-  );
-}
-
-function Youtube(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31.4 31.4 0 0 0 .5 12 31.4 31.4 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8ZM9.8 15.5v-7l6 3.5-6 3.5Z" />
-    </svg>
-  );
-}
-
 const data = {
   instaLink: "https://www.instagram.com/moreonprithvi/",
   services: {
@@ -91,16 +67,6 @@ const serviceLinks = [
   { text: "AI Automation", href: data.services.automation },
 ];
 
-const blogLinks = [
-  ...getAllPosts()
-    .slice(0, 3)
-    .map(({ meta }) => ({
-      text: meta.title,
-      href: `/blog/${meta.slug}`,
-    })),
-  { text: "All articles", href: "/blog" },
-];
-
 const contactInfo = [
   { icon: Mail, text: data.contact.email },
   { icon: Phone, text: data.contact.phone },
@@ -119,7 +85,15 @@ src="/tnm-logo.png"
   );
 }
 
-export default function Footer4Col() {
+export default async function Footer4Col() {
+  const blogLinks = [
+    ...(await getAllPosts()).slice(0, 3).map(({ meta }) => ({
+      text: meta.title,
+      href: `/blog/${meta.slug}`,
+    })),
+    { text: "All articles", href: "/blog" },
+  ];
+
   return (
     <footer className="mt-16 w-full place-self-end rounded-t-3xl bg-secondary">
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
