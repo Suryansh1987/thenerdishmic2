@@ -1,20 +1,8 @@
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { AppleIcon, ArrowFlowIcon, LinuxIcon, WindowsIcon } from "./icons";
 import Faq from "./Faq";
 import { Button, Card, Sticker, Tag } from "./ui";
-
-const logos = [
-  "Growth Forge",
-  "Leadmint",
-  "Northstar Ops",
-  "Market Loop",
-  "Firstcall",
-  "Studio Lane",
-  "Outbound Club",
-  "Signal Desk",
-  "Sidekick CRM",
-  "Operator OS",
-];
 
 const plans = [
   {
@@ -45,14 +33,6 @@ const plans = [
     ],
   },
 ];
-
-const messageRows = [
-  ["@yogalab.india", "Saw your new teacher training batch go live. Want a DM flow that books warm leads?", "replied"],
-  ["@calmspaceblr", "We built a founder-safe outreach sequence for wellness studios in Bangalore.", "sending"],
-  ["@soulstretch.studio", "Noticed your evening slots fill fast. We can help turn profile visits into booked trials.", "queued"],
-  ["@flowwithmira", "Your reels already do the hard part. InstaFlow handles the personalized first touch.", "replied"],
-  ["@pranapulse.blr", "Can I share a 3-line outreach script that got 34% replies for local fitness offers?", "queued"],
-] as const;
 
 type CardVars = CSSProperties & {
   "--card-rotate"?: string;
@@ -101,8 +81,18 @@ export default function LandingPage() {
         <Nav />
         <main>
           <Hero />
-          <LogosStrip />
+          <ProductShotSection
+            id="dashboard"
+            eyebrow="Dashboard"
+            title="See the whole system in one screen."
+            body="Your dashboard keeps plans, prompts, activity, and performance in one place."
+            image={{
+              src: "/dashboard.png",
+              alt: "InstaFlow dashboard screenshot",
+            }}
+          />
           <HowItWorks />
+          <ProductGallery />
           <Pricing />
           <FaqSection />
         </main>
@@ -160,126 +150,44 @@ function Hero() {
   return (
     <section id="top" className="instaflow-hero instaflow-section">
       <div className="instaflow-container">
-        <div style={{ position: "relative" }}>
-          <Sticker className="instaflow-hero-sticker instaflow-hero-sticker-a" style={{ top: "90px", right: "80px", transform: "rotate(8deg)" }}>
-            {`\u21B3 10x reply rate`}
-          </Sticker>
-          <Sticker
-            className="instaflow-hero-sticker instaflow-hero-sticker-b"
-            style={{ top: "360px", right: "240px", transform: "rotate(-5deg)", background: "var(--surface)", color: "var(--fg)" }}
-          >
-            {`\u26A1 live in 5 min`}
-          </Sticker>
-          <div className="instaflow-hero-grid">
-            <div>
-              <div className="instaflow-live-row">
-                <span className="instaflow-live-dot" aria-hidden="true" />
-                <span className="instaflow-eyebrow">v2.4 - Out now for Windows - macOS - Linux</span>
-              </div>
-              <h1 className="instaflow-display">
-                Cold DMs
-                <br />
-                that actually
-                <br />
-                <span className="instaflow-underline">get replied to.</span>
-              </h1>
-              <p className="instaflow-lead" style={{ marginTop: 28 }}>
-                InstaFlow helps founders and operators run personalized Instagram outreach with prompts, account control, smart queues, and a dashboard that shows exactly what is converting.
-              </p>
-              <div className="instaflow-downloads">
-                <Button href="#pricing" variant="primary" size="lg" aria-label="Download for Windows">
-                  <WindowsIcon />
-                  Windows
-                </Button>
-                <Button href="#pricing" size="lg" aria-label="Download for macOS">
-                  <AppleIcon />
-                  macOS
-                </Button>
-                <Button href="#pricing" size="lg" aria-label="Download for Linux">
-                  <LinuxIcon />
-                  Linux
-                </Button>
-              </div>
-              <div className="instaflow-download-note">Free forever - 47.2 MB - v2.4.1</div>
+        <div className="instaflow-hero-grid">
+          <div>
+            <div className="instaflow-live-row">
+              <span className="instaflow-live-dot" aria-hidden="true" />
+              <span className="instaflow-eyebrow">v2.4 - Out now for Windows - macOS - Linux</span>
             </div>
+            <h1 className="instaflow-display instaflow-hero-title">
+              Cold DMs
+              <br />
+              that actually
+              <br />
+              <span className="instaflow-underline">get replied to.</span>
+            </h1>
+            <p className="instaflow-lead" style={{ marginTop: 28 }}>
+              Run personalized Instagram outreach with cleaner account control, automation, and reporting.
+            </p>
+            <div className="instaflow-downloads">
+              <Button href="#pricing" variant="primary" size="lg" aria-label="Download for Windows">
+                <WindowsIcon />
+                Windows
+              </Button>
+              <Button href="#pricing" size="lg" aria-label="Download for macOS">
+                <AppleIcon />
+                macOS
+              </Button>
+              <Button href="#pricing" size="lg" aria-label="Download for Linux">
+                <LinuxIcon />
+                Linux
+              </Button>
+            </div>
+            <div className="instaflow-download-note">Free forever - 47.2 MB - v2.4.1</div>
           </div>
-        </div>
-        <div className="instaflow-product-grid">
-          <AppPreview />
-          <HeroStats />
+          <div className="instaflow-hero-card-stack">
+            <HeroStats />
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function AppPreview() {
-  return (
-    <Card className="instaflow-app-shell" style={{ "--card-rotate": "-0.6deg", "--card-hover-rotate": "-1.6deg" } as CardVars}>
-      <div className="instaflow-app-topbar">
-        <div className="instaflow-traffic" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="instaflow-app-title">instaflow - automation/run #218 - 2 accounts active</div>
-      </div>
-      <div className="instaflow-app-body">
-        <aside className="instaflow-app-sidebar">
-          <div className="instaflow-pro-badge">TNM - Pro plan</div>
-          <div className="instaflow-side-list">
-            {["Dashboard", "Accounts", "Automation", "History", "Plans"].map((item) => (
-              <div key={item} className={`instaflow-side-item ${item === "Automation" ? "instaflow-side-item-active" : ""}`}>
-                <span>{item}</span>
-                <span>{item === "Automation" ? "ON" : "->"}</span>
-              </div>
-            ))}
-          </div>
-        </aside>
-        <div className="instaflow-main-pane">
-          <div className="instaflow-pane-header">
-            <div>
-              <div className="instaflow-eyebrow">Automation</div>
-              <div className="instaflow-pane-title">Active run: Yoga studio leads - Bangalore</div>
-            </div>
-            <span className="instaflow-pill instaflow-pill-accent">
-              <span className="instaflow-live-dot" aria-hidden="true" />
-              Running
-            </span>
-          </div>
-          <div className="instaflow-message-list">
-            {messageRows.map(([handle, preview, status]) => (
-              <div key={handle} className="instaflow-message-row">
-                <div className="instaflow-message-handle">{handle}</div>
-                <div className="instaflow-message-preview">{preview}</div>
-                <div className={`instaflow-status instaflow-status-${status}`}>
-                  <span className="instaflow-status-dot" aria-hidden="true" />
-                  {status}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="instaflow-app-footer">
-        <div className="instaflow-app-stat">
-          <span className="instaflow-app-stat-label">Reply rate</span>
-          <div className="instaflow-app-stat-value instaflow-app-stat-value-accent">34%</div>
-        </div>
-        <div className="instaflow-app-stat">
-          <span className="instaflow-app-stat-label">Sent today</span>
-          <div className="instaflow-app-stat-value">142</div>
-        </div>
-        <div className="instaflow-app-stat">
-          <span className="instaflow-app-stat-label">Replies</span>
-          <div className="instaflow-app-stat-value">48</div>
-        </div>
-        <div className="instaflow-app-stat">
-          <span className="instaflow-app-stat-label">Queued</span>
-          <div className="instaflow-app-stat-value">258</div>
-        </div>
-      </div>
-    </Card>
   );
 }
 
@@ -294,7 +202,7 @@ function HeroStats() {
             <div className="instaflow-price-unit">reply rate</div>
           </div>
           <p className="instaflow-lead" style={{ maxWidth: 420, marginTop: 14 }}>
-            Personalized first-touch copy plus account pacing turns cold Instagram outreach into something people answer.
+            Personalized first-touch copy plus pacing turns cold outreach into real conversations.
           </p>
         </div>
       </Card>
@@ -313,17 +221,7 @@ function HeroStats() {
         <Card className="instaflow-small-stat-card">
           <div style={{ padding: 22 }}>
             <div className="instaflow-eyebrow">Live now</div>
-            <div className="instaflow-pane-title" style={{ marginTop: 10 }}>
-              2,418 active users now
-            </div>
-          </div>
-        </Card>
-        <Card className="instaflow-small-stat-card">
-          <div style={{ padding: 22 }}>
-            <div className="instaflow-eyebrow">This month</div>
-            <div className="instaflow-pane-title" style={{ marginTop: 10 }}>
-              1.4M DMs sent this month
-            </div>
+            <div className="instaflow-pane-title" style={{ marginTop: 10 }}>Active users</div>
           </div>
         </Card>
       </div>
@@ -331,24 +229,107 @@ function HeroStats() {
   );
 }
 
-function LogosStrip() {
-  const marqueeLogos = [...logos, ...logos];
+function ProductShotSection({
+  id,
+  eyebrow,
+  title,
+  body,
+  image,
+}: {
+  id: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  image: { src: string; alt: string };
+}) {
+  return (
+    <section id={id} className="instaflow-section instaflow-shot-section">
+      <div className="instaflow-container instaflow-shot-layout">
+        <div className="instaflow-shot-copy">
+          <div className="instaflow-eyebrow">{eyebrow}</div>
+          <h2 className="instaflow-display-2" style={{ marginTop: 16 }}>
+            {title}
+          </h2>
+          <p className="instaflow-lead" style={{ marginTop: 20 }}>
+            {body}
+          </p>
+        </div>
+        <Card className="instaflow-shot-frame" style={{ "--card-rotate": "-0.3deg", "--card-hover-rotate": "-0.8deg" } as CardVars}>
+          <Image className="instaflow-shot-image" src={image.src} alt={image.alt} width={1430} height={855} />
+        </Card>
+      </div>
+    </section>
+  );
+}
+
+function ProductGallery() {
+  const shots = [
+    {
+      eyebrow: "Accounts",
+      title: "Manage account health fast.",
+      body: "See connected profiles, check session health, and handle re-logins without breaking your flow.",
+      src: "/accoun.png",
+      alt: "InstaFlow accounts page screenshot",
+    },
+    {
+      eyebrow: "Automation",
+      title: "Start runs from one clean panel.",
+      body: "Your template, targets, timing, and controls stay together so launching a campaign feels simple.",
+      src: "/automation.png",
+      alt: "InstaFlow automation page screenshot",
+    },
+    {
+      eyebrow: "History",
+      title: "Review every run and outcome.",
+      body: "Track sent messages, skipped users, and job performance in a layout that is easy to scan.",
+      src: "/history.png",
+      alt: "InstaFlow history page screenshot",
+    },
+  ];
 
   return (
-    <section className="instaflow-logos">
+    <section className="instaflow-section instaflow-gallery-section">
       <div className="instaflow-container">
-        <div className="instaflow-eyebrow">Trusted by founders & operators at</div>
-        <div className="instaflow-logos-marquee">
-          <div className="instaflow-logos-track">
-            {marqueeLogos.map((logo, index) => (
-              <div key={`${logo}-${index}`} className="instaflow-logo-word">
-                {logo}
-              </div>
-            ))}
-          </div>
+        <div className="instaflow-gallery-grid">
+          {shots.map((shot, index) => (
+            <ScreenshotCard key={shot.eyebrow} index={index} {...shot} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function ScreenshotCard({
+  index,
+  eyebrow,
+  title,
+  body,
+  src,
+  alt,
+}: {
+  index: number;
+  eyebrow: string;
+  title: string;
+  body: string;
+  src: string;
+  alt: string;
+}) {
+  return (
+    <div className={`instaflow-gallery-row ${index % 2 === 1 ? "instaflow-gallery-row-reverse" : ""}`}>
+      <div className="instaflow-gallery-copy">
+        <div className="instaflow-eyebrow">{eyebrow}</div>
+        <div className="instaflow-pane-title instaflow-gallery-title">{title}</div>
+        <p className="instaflow-lead instaflow-gallery-body">{body}</p>
+      </div>
+      <div className="instaflow-gallery-stack" aria-hidden="true">
+        <div className="instaflow-gallery-shadow instaflow-gallery-shadow-back" />
+        <div className="instaflow-gallery-shadow instaflow-gallery-shadow-mid" />
+        <Card className="instaflow-gallery-card" style={{ "--card-rotate": "0deg", "--card-hover-rotate": "-0.5deg" } as CardVars}>
+          <Image className="instaflow-shot-image" src={src} alt={alt} width={1430} height={855} />
+        </Card>
+      </div>
+    </div>
   );
 }
 
@@ -358,9 +339,9 @@ function HowItWorks() {
       <div className="instaflow-container">
         <div className="instaflow-eyebrow">How it works - 4 steps</div>
         <h2 className="instaflow-display-2" style={{ marginTop: 16 }}>
-          From install to first reply
+          From setup to
           <br />
-          in under 5 minutes.
+          first reply.
         </h2>
         <div className="instaflow-how-grid">
           {steps.map((step, index) => (
@@ -584,7 +565,7 @@ function FaqSection() {
             a lot.
           </h2>
           <p className="instaflow-lead" style={{ marginTop: 20 }}>
-            Launch copy is strongest when the hard questions are answered clearly. These are the objections most founders will have before they trust an outreach tool with their accounts.
+            The most common questions are about safety, personalization, and day-to-day workflow.
           </p>
           <div style={{ marginTop: 28 }}>
             <Button href="mailto:hello@thenerdishmic.com?subject=InstaFlow%20support" variant="primary">
@@ -611,7 +592,7 @@ function Footer() {
               <span>instaflow.</span>
             </div>
             <p style={{ marginTop: 16, maxWidth: 420, fontSize: 18, lineHeight: 1.55 }}>
-              Outreach software for founders who want the speed of automation without the sloppy feel of generic DM blasts.
+              Outreach software for founders who want automation without messy workflows.
             </p>
             <div className="instaflow-downloads instaflow-footer-downloads" style={{ marginTop: 24 }}>
               <Button href="#pricing" variant="default" aria-label="Download for Windows">
