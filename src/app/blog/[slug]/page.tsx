@@ -5,12 +5,12 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer4Col from "@/components/ui/footer-column";
 import { formatDate, getAllPosts, getPostBySlug } from "@/lib/blog";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_LOGO, SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "@/lib/site";
 
 type RouteParams = { slug: string };
 
 export async function generateStaticParams(): Promise<RouteParams[]> {
-  return getAllPosts().map(({ meta }) => ({ slug: meta.slug }));
+  return (await getAllPosts()).map(({ meta }) => ({ slug: meta.slug }));
 }
 
 export async function generateMetadata({
@@ -19,12 +19,12 @@ export async function generateMetadata({
   params: Promise<RouteParams>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
 
   const url = `${SITE_URL}/blog/${post.meta.slug}`;
   return {
-    title: `${post.meta.title} | ${SITE_NAME}`,
+    title: post.meta.title,
     description: post.meta.description,
     keywords: post.meta.tags,
     authors: [{ name: post.meta.author }],
@@ -36,13 +36,23 @@ export async function generateMetadata({
       description: post.meta.description,
       siteName: SITE_NAME,
       publishedTime: post.meta.date,
+      modifiedTime: post.meta.date,
       authors: [post.meta.author],
       tags: post.meta.tags,
+      images: [
+        {
+          url: SITE_OG_IMAGE,
+          width: 1200,
+          height: 630,
+          alt: `${post.meta.title} | ${SITE_NAME}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.meta.title,
       description: post.meta.description,
+      images: [SITE_OG_IMAGE],
     },
   };
 }
@@ -53,7 +63,7 @@ export default async function BlogPostPage({
   params: Promise<RouteParams>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
   const { meta, Content } = post;
@@ -61,19 +71,26 @@ export default async function BlogPostPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: meta.title,
     description: meta.description,
     datePublished: meta.date,
     dateModified: meta.date,
-    author: { "@type": "Organization", name: meta.author },
+    image: [SITE_OG_IMAGE],
+    articleSection: meta.tags[0],
+    keywords: meta.tags.join(", "),
+    author: {
+      "@type": "Organization",
+      name: meta.author,
+      url: SITE_URL,
+    },
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/tnm-logo.png` },
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: SITE_LOGO },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    keywords: meta.tags.join(", "),
   };
 
   return (

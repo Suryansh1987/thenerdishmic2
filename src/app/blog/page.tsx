@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer4Col from "@/components/ui/footer-column";
 import { formatDate, getPaginatedPosts } from "@/lib/blog";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "@/lib/site";
 
 type SearchParams = Promise<{ page?: string | string[] }>;
 
@@ -17,26 +17,36 @@ export async function generateMetadata({
   const raw = Array.isArray(sp.page) ? sp.page[0] : sp.page;
   const page = raw ? parseInt(raw, 10) : 1;
   const isPaginated = Number.isFinite(page) && page > 1;
+  const canonical = isPaginated ? `${SITE_URL}/blog?page=${page}` : `${SITE_URL}/blog`;
 
   return {
     title: `Blog | ${SITE_NAME}`,
     description:
       "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
-    alternates: { canonical: `${SITE_URL}/blog` },
+    alternates: { canonical },
     ...(isPaginated && { robots: { index: false, follow: true } }),
     openGraph: {
       type: "website",
-      url: `${SITE_URL}/blog`,
+      url: canonical,
       title: `Blog | ${SITE_NAME}`,
       description:
         "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
       siteName: SITE_NAME,
+      images: [
+        {
+          url: SITE_OG_IMAGE,
+          width: 1200,
+          height: 630,
+          alt: `${SITE_NAME} blog social share image`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `Blog | ${SITE_NAME}`,
       description:
         "Field notes on content velocity, AI automation, and the marketing systems we build for founder-led brands.",
+      images: [SITE_OG_IMAGE],
     },
   };
 }
@@ -67,7 +77,7 @@ export default async function BlogIndexPage({
   const sp = await searchParams;
   const raw = Array.isArray(sp.page) ? sp.page[0] : sp.page;
   const requested = raw ? parseInt(raw, 10) : 1;
-  const { items, page, totalPages, hasPrev, hasNext } = getPaginatedPosts(
+  const { items, page, totalPages, hasPrev, hasNext } = await getPaginatedPosts(
     Number.isFinite(requested) ? requested : 1,
   );
 
