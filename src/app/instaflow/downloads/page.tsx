@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { desc } from "drizzle-orm";
 import type { ReactNode } from "react";
+import { auth } from "@clerk/nextjs/server";
 import { AppleIcon, LinuxIcon, WindowsIcon } from "@/components/instaflow/icons";
 import { Button, Card, Tag } from "@/components/instaflow/ui";
 import { db, schema } from "@/db";
@@ -24,7 +25,31 @@ const platformIcons: Record<string, ReactNode> = {
   linux: <LinuxIcon />,
 };
 
+function getReleaseDescription(platform: string, notes: string | null) {
+  const normalizedPlatform = platformLabels[platform] ?? platform;
+  const trimmedNotes = notes?.trim();
+
+  if (!trimmedNotes) {
+    return `The latest ${normalizedPlatform} installer is ready to download.`;
+  }
+
+  if (/uploaded to s3/i.test(trimmedNotes)) {
+    return `The latest ${normalizedPlatform} desktop installer is ready to download.`;
+  }
+
+  return trimmedNotes;
+}
+
+function getUnavailableDescription(platform: string) {
+  const normalizedPlatform = platformLabels[platform] ?? platform;
+  return `${normalizedPlatform} download is not available yet. Check back soon for the first public build.`;
+}
+
 export default async function InstaFlowDownloadsPage() {
+  await auth.protect({
+    unauthenticatedUrl: "/instaflow/sign-in",
+  });
+
   const versions = await db
     .select()
     .from(schema.appVersions)
@@ -85,7 +110,7 @@ export default async function InstaFlowDownloadsPage() {
                       </div>
 
                       <p className="instaflow-step-body" style={{ margin: 0 }}>
-                        {release?.releaseNotes?.trim() || "Release notes will show up here once this build is published."}
+                        {release ? getReleaseDescription(platform, release.releaseNotes) : getUnavailableDescription(platform)}
                       </p>
 
                       {release ? (
@@ -99,7 +124,7 @@ export default async function InstaFlowDownloadsPage() {
                         </div>
                       ) : (
                         <div className="instaflow-eyebrow" style={{ letterSpacing: "0.06em" }}>
-                          Upload this build in `app_versions` to make it available here.
+                          We will list the download here as soon as this build is released.
                         </div>
                       )}
                     </div>
