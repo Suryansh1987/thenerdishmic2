@@ -989,6 +989,65 @@ body:has(.instaflow-page) summary {
   text-transform: uppercase;
 }
 
+.instaflow-auth-page {
+  padding: 84px 0 120px;
+}
+
+.instaflow-auth-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 0.8fr);
+  gap: 32px;
+  align-items: center;
+  min-height: calc(100vh - 180px);
+}
+
+.instaflow-auth-copy {
+  max-width: 560px;
+}
+
+.instaflow-auth-card {
+  display: flex;
+  justify-content: center;
+}
+
+.instaflow-clerk-root {
+  width: 100%;
+}
+
+.instaflow-clerk-surface {
+  width: min(100%, 460px);
+  background: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow-hard);
+}
+
+.instaflow-clerk-button {
+  border-radius: 8px;
+}
+
+.instaflow-clerk-button-primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.instaflow-clerk-input {
+  border-radius: 8px;
+}
+
+.instaflow-clerk-link {
+  color: var(--accent);
+}
+
+.instaflow-clerk-label,
+.instaflow-clerk-subtitle {
+  color: var(--fg-dim);
+}
+
+.instaflow-clerk-title {
+  color: var(--fg);
+}
+
 .instaflow-shot-section {
   padding-top: 0;
 }
@@ -1571,7 +1630,8 @@ body:has(.instaflow-page) summary {
   .instaflow-faq-layout,
   .instaflow-footer-grid,
   .instaflow-shot-layout,
-  .instaflow-gallery-row {
+  .instaflow-gallery-row,
+  .instaflow-auth-grid {
     grid-template-columns: 1fr;
   }
 

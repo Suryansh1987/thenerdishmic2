@@ -4,6 +4,9 @@ import { AppleIcon, ArrowFlowIcon, LinuxIcon, WindowsIcon } from "./icons";
 import Faq from "./Faq";
 import { Button, Card, Sticker, Tag } from "./ui";
 
+const INSTAFLOW_SIGN_IN_URL = "/instaflow/sign-in";
+const INSTAFLOW_SIGN_UP_URL = "/instaflow/sign-up";
+
 const plans = [
   {
     name: "Free",
@@ -120,10 +123,10 @@ function Nav() {
             <a href="#footer">Changelog</a>
           </div>
           <div className="instaflow-nav-actions">
-            <a className="instaflow-signin" href="#faq">
+            <a className="instaflow-signin" href={INSTAFLOW_SIGN_IN_URL}>
               Sign in
             </a>
-            <Button href="#pricing" variant="primary">
+            <Button href={INSTAFLOW_SIGN_UP_URL} variant="primary">
               Download
             </Button>
             <details className="instaflow-menu">
@@ -167,15 +170,15 @@ function Hero() {
               Run personalized Instagram outreach with cleaner account control, automation, and reporting.
             </p>
             <div className="instaflow-downloads">
-              <Button href="#pricing" variant="primary" size="lg" aria-label="Download for Windows">
+              <Button href={INSTAFLOW_SIGN_UP_URL} variant="primary" size="lg" aria-label="Download for Windows">
                 <WindowsIcon />
                 Windows
               </Button>
-              <Button href="#pricing" size="lg" aria-label="Download for macOS">
+              <Button href={INSTAFLOW_SIGN_UP_URL} size="lg" aria-label="Download for macOS">
                 <AppleIcon />
                 macOS
               </Button>
-              <Button href="#pricing" size="lg" aria-label="Download for Linux">
+              <Button href={INSTAFLOW_SIGN_UP_URL} size="lg" aria-label="Download for Linux">
                 <LinuxIcon />
                 Linux
               </Button>
@@ -443,7 +446,7 @@ function AutomationVisual() {
           <Tag>@studioleads.ai</Tag>
         </div>
       </div>
-      <Button href="#pricing" variant="primary">
+      <Button href={INSTAFLOW_SIGN_UP_URL} variant="primary">
         Start automation -&gt;
       </Button>
     </div>
@@ -533,7 +536,7 @@ function Pricing() {
                     </div>
                   ))}
                 </div>
-                <Button href="#footer" variant={plan.highlight ? "default" : "primary"}>
+                <Button href={INSTAFLOW_SIGN_UP_URL} variant={plan.highlight ? "default" : "primary"}>
                   {plan.name === "Free" ? "Start free" : `Get ${plan.name}`}
                 </Button>
               </Card>
@@ -595,15 +598,15 @@ function Footer() {
               Outreach software for founders who want automation without messy workflows.
             </p>
             <div className="instaflow-downloads instaflow-footer-downloads" style={{ marginTop: 24 }}>
-              <Button href="#pricing" variant="default" aria-label="Download for Windows">
+              <Button href={INSTAFLOW_SIGN_UP_URL} variant="default" aria-label="Download for Windows">
                 <WindowsIcon />
                 Windows
               </Button>
-              <Button href="#pricing" variant="default" aria-label="Download for macOS">
+              <Button href={INSTAFLOW_SIGN_UP_URL} variant="default" aria-label="Download for macOS">
                 <AppleIcon />
                 macOS
               </Button>
-              <Button href="#pricing" variant="default" aria-label="Download for Linux">
+              <Button href={INSTAFLOW_SIGN_UP_URL} variant="default" aria-label="Download for Linux">
                 <LinuxIcon />
                 Linux
               </Button>
