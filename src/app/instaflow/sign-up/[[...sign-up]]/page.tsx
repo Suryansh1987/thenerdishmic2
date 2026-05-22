@@ -5,11 +5,11 @@ export default function InstaFlowSignUpPage() {
   return (
     <AuthShell
       title="Create your InstaFlow account."
-      body="Start with the InstaFlow sign-up flow, then land back on the product page while the app workspace is still being built."
+      body="Start with the InstaFlow sign-up flow, then jump straight to the latest desktop builds while the full workspace is still being built."
     >
       <SignUp
         appearance={clerkAppearance}
-        fallbackRedirectUrl="/instaflow"
+        fallbackRedirectUrl="/instaflow/downloads"
         signInUrl="/instaflow/sign-in"
       />
     </AuthShell>

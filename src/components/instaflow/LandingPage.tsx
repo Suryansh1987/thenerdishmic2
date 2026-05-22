@@ -536,7 +536,7 @@ function Pricing() {
                     </div>
                   ))}
                 </div>
-                <Button href={INSTAFLOW_SIGN_UP_URL} variant={plan.highlight ? "default" : "primary"}>
+                <Button href={INSTAFLOW_SIGN_UP_URL} variant="primary">
                   {plan.name === "Free" ? "Start free" : `Get ${plan.name}`}
                 </Button>
               </Card>
