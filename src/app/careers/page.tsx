@@ -147,8 +147,8 @@ export default async function CareersPage() {
             <p className="text-base font-medium text-foreground">Don&apos;t see your role?</p>
             <p className="mt-2 text-sm text-foreground/60">
               We&apos;re always open to exceptional talent. Reach out at{" "}
-              <a href="mailto:thenerdishmic098@gmail.com" className="underline underline-offset-4 hover:text-foreground transition-colors">
-                thenerdishmic098@gmail.com
+              <a href="mailto:suryansh@thenerdishmic.com" className="underline underline-offset-4 hover:text-foreground transition-colors">
+                suryansh@thenerdishmic.com
               </a>
             </p>
           </div>

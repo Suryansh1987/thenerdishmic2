@@ -172,10 +172,10 @@ export default async function JobPage({ params }: Props) {
                       We&apos;re not accepting applications for this role right now. Check back later or email us directly.
                     </p>
                     <a
-                      href="mailto:thenerdishmic098@gmail.com"
+                      href="mailto:suryansh@thenerdishmic.com"
                       className="mt-4 inline-block text-sm underline underline-offset-4 hover:text-foreground transition-colors"
                     >
-                      thenerdishmic098@gmail.com
+                      suryansh@thenerdishmic.com
                     </a>
                   </div>
                 ) : (

@@ -38,7 +38,7 @@ const data = {
     careers: "/careers",
   },
   contact: {
-    email: "thenerdishmic098@gmail.com",
+    email: "suryansh@thenerdishmic.com",
     phone: "+91 9335498902",
     address: "Remote-first · India & US",
   },
