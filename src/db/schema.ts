@@ -229,6 +229,41 @@ export const dailyUsageCounters = pgTable("daily_usage_counters", {
   }).onUpdate("cascade").onDelete("cascade"),
 ]);
 
+export const careerJobStatus = pgEnum("CareerJobStatus", ["open", "closed"]);
+
+export const careerJobs = pgTable("career_jobs", {
+  id: text().primaryKey().notNull(),
+  title: text().notNull(),
+  type: text().notNull(),
+  location: text().notNull(),
+  description: text().notNull(),
+  highlights: jsonb().notNull().$type<string[]>(),
+  skills: jsonb().notNull().$type<string[]>(),
+  questions: jsonb().notNull().$type<{ id: string; label: string; question: string; placeholder: string; type: "text" | "textarea" | "url" }[]>(),
+  status: careerJobStatus().default("open").notNull(),
+  theme: text().default("orange").notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  createdAt: timestamp("created_at", { precision: 3, mode: "string" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: timestamp("updated_at", { precision: 3, mode: "string" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+});
+
+export const careerApplications = pgTable("career_applications", {
+  id: text().primaryKey().notNull(),
+  jobId: text("job_id").notNull(),
+  name: text().notNull(),
+  email: text().notNull(),
+  phone: text(),
+  answers: jsonb().notNull().$type<{ questionId: string; question: string; answer: string }[]>(),
+  createdAt: timestamp("created_at", { precision: 3, mode: "string" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+}, (table) => [
+  index("career_applications_job_id_idx").using("btree", table.jobId.asc().nullsLast().op("text_ops")),
+  foreignKey({
+    columns: [table.jobId],
+    foreignColumns: [careerJobs.id],
+    name: "career_applications_job_id_fkey",
+  }).onUpdate("cascade").onDelete("cascade"),
+]);
+
 export const usageEvents = pgTable("usage_events", {
   id: text().primaryKey().notNull(),
   userId: text("user_id").notNull(),

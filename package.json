@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "drizzle:generate": "drizzle-kit generate",
-    "drizzle:migrate": "drizzle-kit migrate"
+    "drizzle:migrate": "drizzle-kit migrate",
+    "careers:seed": "tsx src/db/seed-careers.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.4.0",

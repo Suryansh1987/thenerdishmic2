@@ -8,6 +8,13 @@
       "when": 1779462508334,
       "tag": "0000_silent_silver_centurion",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1780839694776,
+      "tag": "0001_chief_black_tom",
+      "breakpoints": true
     }
   ]
 }

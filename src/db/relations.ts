@@ -2,6 +2,8 @@ import { relations } from "drizzle-orm/relations";
 import {
   automationJobs,
   billingAttempts,
+  careerApplications,
+  careerJobs,
   dailyUsageCounters,
   igAccounts,
   jobLogs,
@@ -90,5 +92,16 @@ export const usageEventsRelations = relations(usageEvents, ({ one }) => ({
   dailyUsageCounter: one(dailyUsageCounters, {
     fields: [usageEvents.counterId],
     references: [dailyUsageCounters.id],
+  }),
+}));
+
+export const careerJobsRelations = relations(careerJobs, ({ many }) => ({
+  applications: many(careerApplications),
+}));
+
+export const careerApplicationsRelations = relations(careerApplications, ({ one }) => ({
+  job: one(careerJobs, {
+    fields: [careerApplications.jobId],
+    references: [careerJobs.id],
   }),
 }));

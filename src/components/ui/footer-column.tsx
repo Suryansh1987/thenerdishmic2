@@ -35,7 +35,7 @@ const data = {
     process: "#services",
     team: "#team",
     works: "#works",
-    careers: "#careers",
+    careers: "/careers",
   },
   contact: {
     email: "thenerdishmic098@gmail.com",
