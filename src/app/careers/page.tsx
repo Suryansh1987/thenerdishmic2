@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/careers` },
 };
 
+export const dynamic = "force-dynamic";
+
 const THEME_MAP: Record<string, { accent: string; dot: string; border: string; bg: string }> = {
   orange: { accent: "text-orange-500", dot: "bg-orange-500", border: "border-orange-500/20", bg: "from-orange-500/10 to-red-500/10" },
   violet: { accent: "text-violet-500", dot: "bg-violet-500", border: "border-violet-500/20", bg: "from-violet-500/10 to-purple-500/10" },

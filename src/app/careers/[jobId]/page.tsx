@@ -44,6 +44,8 @@ function getTheme(theme: string) {
   return THEME_MAP[theme] ?? THEME_MAP.orange;
 }
 
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ jobId: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
